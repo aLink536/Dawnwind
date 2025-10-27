@@ -8,7 +8,8 @@
       {% if current_tags %} – {{ current_tags | join: ', ' }}{% endif %}
       {% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}
     </title>
-
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.js' | asset_url | script_tag }}
     {{ content_for_header }}
   </head>
   <body>

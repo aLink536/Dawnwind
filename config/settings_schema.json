@@ -1,6 +1,11 @@
 [
   {
     "name": "Theme settings",
-    "settings": []
+    "settings": [
+      {
+        "type": "header",
+        "content": "Colors"
+      }
+    ]
   }
 ]

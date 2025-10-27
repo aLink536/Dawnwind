@@ -1,25 +1,16 @@
 {
-  "name": "dawnwind",
+  "name": "dawnwind-shopify-theme",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "dev": "concurrently \"npx tailwindcss -i ./assets/src.css -o ./assets/main.css --watch\" \"shopify theme dev --store=dawnwind.myshopify.com\"",
-    "build": "npx tailwindcss -i ./assets/src.css -o ./assets/main.css --minify"
+    "dev": "concurrently \"npm run build:css\" \"npm run theme:dev\"",
+    "build:css": "npx @tailwindcss/cli -i ./assets/main.css -o ./assets/theme.css --watch",
+    "build:prod": "npx @tailwindcss/cli -i ./assets/main.css -o ./assets/theme.css --minify",
+    "theme:dev": "shopify theme dev --store dawnwind.myshopify.com"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/aLink536/Dawnwind.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/aLink536/Dawnwind/issues"
-  },
-  "homepage": "https://github.com/aLink536/Dawnwind#readme",
   "devDependencies": {
-    "tailwindcss": "^4.1.16"
+    "@tailwindcss/cli": "^4.1.16",
+    "tailwindcss": "^4.1.16",
+    "concurrently": "^8.2.2"
   }
 }
