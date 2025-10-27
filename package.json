@@ -1,0 +1,25 @@
+{
+  "name": "dawnwind",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npx tailwindcss -i ./assets/src.css -o ./assets/main.css --watch\" \"shopify theme dev --store=dawnwind.myshopify.com\"",
+    "build": "npx tailwindcss -i ./assets/src.css -o ./assets/main.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aLink536/Dawnwind.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aLink536/Dawnwind/issues"
+  },
+  "homepage": "https://github.com/aLink536/Dawnwind#readme",
+  "devDependencies": {
+    "tailwindcss": "^4.1.16"
+  }
+}

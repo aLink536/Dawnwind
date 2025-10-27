@@ -1,0 +1,11 @@
+{
+  "current": {
+    "sections": {
+      "main": {
+        "type": "main",
+        "settings": {}
+      }
+    },
+    "order": ["main"]
+  }
+}
