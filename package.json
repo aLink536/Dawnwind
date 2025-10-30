@@ -1,0 +1,28 @@
+{
+  "name": "dawnwind",
+  "version": "1.0.0",
+  "description": "Custom Shopify Skeleton Theme with TailwindCSS v4",
+  "main": "index.js",
+  "type": "commonjs",
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aLink536/Dawnwind.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aLink536/Dawnwind/issues"
+  },
+  "homepage": "https://github.com/aLink536/Dawnwind#readme",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.16",
+    "tailwindcss": "^4.1.16"
+  },
+  "scripts": {
+    "dev": "tailwindcss -i ./assets/input.css -o ./assets/output.css --watch",
+    "build": "tailwindcss -i ./assets/input.css -o ./assets/output.css --minify",
+    "shopify": "shopify theme dev --store https://dawnwind.myshopify.com",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": []
+}
