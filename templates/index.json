@@ -9,6 +9,25 @@
  */
 {
   "sections": {
+    "hero_YPkie4": {
+      "type": "hero",
+      "name": "Hero",
+      "settings": {
+        "hero_image_desktop": "shopify://shop_images/tying-up-boot-laces.jpg",
+        "hero_image_mobile": "shopify://shop_images/wooden-watch.jpg",
+        "hero_heading": "Dawnwind",
+        "hero_subheading": "a clean, responsive Shopify theme built from the ground up with Tailwind CSS for total design control and modern performance.",
+        "hero_button_text": "Primary Button",
+        "hero_button_link": "shopify://collections/all",
+        "hero_secondary_button_text": "Secondary Button",
+        "hero_secondary_button_link": "",
+        "content_horizontal_position": "items-center text-center",
+        "content_vertical_position": "justify-end",
+        "content_width": "lg:w-1/2",
+        "full_width": true,
+        "color_scheme": "scheme-5da9c5a7-1a21-488b-a421-72bfcc925f6b"
+      }
+    },
     "collections_ypKP8Y": {
       "type": "collections",
       "name": "t:general.collections_grid",
@@ -19,6 +38,7 @@
     }
   },
   "order": [
+    "hero_YPkie4",
     "collections_ypKP8Y"
   ]
 }

@@ -1,32 +1,59 @@
 {% style %}
-    {{ settings.type_primary_font | font_face: font_display: 'swap' }}
-    {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-    {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-    {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+      {{ settings.type_primary_font | font_face: font_display: 'swap' }}
+      {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+      {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+      {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
 
-    :root {
-      /* Typography */
-      --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-      --font-primary--style: {{ settings.type_primary_font.style }};
-      --font-primary--weight: {{ settings.type_primary_font.weight }};
+      :root {
+        /* Typography */
+        --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
+        --font-primary--style: {{ settings.type_primary_font.style }};
+        --font-primary--weight: {{ settings.type_primary_font.weight }};
 
-      /* Layout */
-      --container-max-width: {{ settings.max_page_width }}px;
-      --container-padding: {{ settings.container_padding }}%;
-      --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+        /* Layout */
+        --container-max-width: {{ settings.max_page_width }}px;
+        --container-padding: {{ settings.container_padding }}%;
+        --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
 
-  {% for scheme in settings.color_schemes %}
-    .color-scheme--{{ scheme.id }} {
-      --color-background: {{ scheme.settings.background }};
-      --gradient-background: {{ scheme.settings.background_gradient }};
-      --color-foreground: {{ scheme.settings.text }};
-      --color-accent: {{ scheme.settings.accent }};
-      --color-button: {{ scheme.settings.button }};
-      --color-button-label: {{ scheme.settings.button_label }};
-      --color-secondary-button: {{ scheme.settings.secondary_button }};
-      --color-secondary-button-label: {{ scheme.settings.secondary_button_label }};
-      --color-shadow: {{ scheme.settings.shadow }};
-    }
-  {% endfor %}
-    }
+        /* Font Weights */
+      --font-weight-heading: {{ settings.heading_font_weight }};
+      --font-weight-body: {{ settings.body_font_weight }};
+      --font-weight-button: {{ settings.button_font_weight }};
+
+        /* Font Sizes */
+
+       --font-size-h1: clamp({{ settings.font_size_h1_mobile }}px,
+        calc({{ settings.font_size_h1_mobile }}px + ({{ settings.font_size_h1_desktop }} - {{ settings.font_size_h1_mobile }}) * ((100vw - 320px) / (1440 - 320))),
+        {{ settings.font_size_h1_desktop }}px);
+      --font-size-h2: clamp({{ settings.font_size_h2_mobile }}px,
+        calc({{ settings.font_size_h2_mobile }}px + ({{ settings.font_size_h2_desktop }} - {{ settings.font_size_h2_mobile }}) * ((100vw - 320px) / (1440 - 320))),
+        {{ settings.font_size_h2_desktop }}px);
+      --font-size-h3: clamp({{ settings.font_size_h3_mobile }}px,
+        calc({{ settings.font_size_h3_mobile }}px + ({{ settings.font_size_h3_desktop }} - {{ settings.font_size_h3_mobile }}) * ((100vw - 320px) / (1440 - 320))),
+        {{ settings.font_size_h3_desktop }}px);
+      --font-size-h4: clamp({{ settings.font_size_h4_mobile }}px,
+        calc({{ settings.font_size_h4_mobile }}px + ({{ settings.font_size_h4_desktop }} - {{ settings.font_size_h4_mobile }}) * ((100vw - 320px) / (1440 - 320))),
+        {{ settings.font_size_h4_desktop }}px);
+      --font-size-h5: clamp({{ settings.font_size_h5_mobile }}px,
+        calc({{ settings.font_size_h5_mobile }}px + ({{ settings.font_size_h5_desktop }} - {{ settings.font_size_h5_mobile }}) * ((100vw - 320px) / (1440 - 320))),
+        {{ settings.font_size_h5_desktop }}px);
+      --font-size-body: clamp({{ settings.font_size_body_mobile }}px,
+        calc({{ settings.font_size_body_mobile }}px + ({{ settings.font_size_body_desktop }} - {{ settings.font_size_body_mobile }}) * ((100vw - 320px) / (1440 - 320))),
+        {{ settings.font_size_body_desktop }}px);
+
+
+    {% for scheme in settings.color_schemes %}
+      .color-scheme--{{ scheme.id }} {
+        --color-background: {{ scheme.settings.background }};
+        --gradient-background: {{ scheme.settings.background_gradient }};
+        --color-foreground: {{ scheme.settings.text }};
+        --color-accent: {{ scheme.settings.accent }};
+        --color-button: {{ scheme.settings.button }};
+        --color-button-label: {{ scheme.settings.button_label }};
+        --color-secondary-button: {{ scheme.settings.secondary_button }};
+        --color-secondary-button-label: {{ scheme.settings.secondary_button_label }};
+        --color-shadow: {{ scheme.settings.shadow }};
+      }
+    {% endfor %}
+      }
 {% endstyle %}

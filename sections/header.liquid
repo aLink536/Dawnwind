@@ -2,7 +2,7 @@
   class="color-scheme color-scheme--{{ section.settings.color_scheme }}"
 >
   <div class="page-width">
-    <div class="flex items-center justify-between gap-5 min-h-20">
+    <div class="flex items-center justify-between gap-5 min-h-10 py-2">
       <!-- Menu -->
       {% if section.settings.menu != blank %}
         <nav
@@ -39,8 +39,13 @@
       >
         <a href="{{ routes.root_url }}" class="transition hover:opacity-80 block">
           {% if section.settings.logo_svg != blank %}
-            <div class="w-full h-full [&>svg]:h-[30px] [&>svg]:max-h-full">
+            <div class="w-full h-full [&>svg]:h-[30px] [&>svg]:max-h-full svg-logo">
             {{ section.settings.logo_svg | raw }}
+            <style>
+              .svg-logo svg {
+                max-width: {{ section.settings.logo_max_width }}px;
+              }
+            </style>
             </div>
           {% elsif section.settings.logo_image != blank %}
             {{ section.settings.logo_image | image_url: width: section.settings.logo_max_width | image_tag: alt: shop.name, class: 'mx-auto' }}

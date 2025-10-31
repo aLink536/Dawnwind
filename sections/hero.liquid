@@ -1,0 +1,197 @@
+{% if section.settings.hero_image_desktop or section.settings.hero_image_mobile %}
+  <section class="color-scheme color-scheme--{{ section.settings.color_scheme }} stack {% unless section.settings.full_width %}page-width{% endunless %}">
+    <div>
+      {% if section.settings.hero_image_mobile %}
+        {{
+          section.settings.hero_image_mobile
+          | image_url: width: 1200
+          | image_tag: alt: 'Hero image (mobile)', class: 'w-full h-auto object-cover block md:hidden'
+        }}
+      {% endif %}
+
+      {% if section.settings.hero_image_desktop %}
+        {{
+          section.settings.hero_image_desktop
+          | image_url: width: 2000
+          | image_tag: alt: 'Hero image (desktop)', class: 'w-full h-auto object-cover hidden md:block'
+        }}
+      {% endif %}
+    </div>
+
+    <div class="page-width w-full text-center py-default flex flex-col gap-3 {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
+    <div class="flex flex-col gap-3 w-full {{ section.settings.content_width }} {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
+      {% if section.settings.hero_heading != blank %}
+        <h2 class="">
+          {{ section.settings.hero_heading }}
+        </h2>
+      {% endif %}
+
+      {% if section.settings.hero_subheading != blank %}
+        <p class="">
+          {{ section.settings.hero_subheading }}
+        </p>
+      {% endif %}
+      {% if section.settings.hero_button_text != blank and section.settings.hero_button_link != blank %}
+        <div class="flex gap-3 flex-wrap">
+          <a href="{{ section.settings.hero_button_link }}" class="button-primary">
+            {{ section.settings.hero_button_text }}
+          </a>
+          {% if section.settings.hero_secondary_button_text != blank %}
+            <a href="{{ section.settings.hero_secondary_button_link }}" class="button-secondary">
+              {{ section.settings.hero_secondary_button_text }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% schema %}
+{
+  "name": "hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_desktop",
+      "label": "Hero image (desktop)"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Hero image (mobile)"
+    },
+    {
+      "type": "header",
+      "content": "Text settings"
+    },
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "hero_subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "hero_button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "hero_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "hero_secondary_button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "hero_secondary_button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Content layout settings"
+    },
+    {
+      "type": "select",
+      "id": "content_horizontal_position",
+      "label": "Content horizontal position",
+      "default": "items-center text-center",
+      "options": [
+        {
+          "value": "items-start text-left",
+          "label": "Left"
+        },
+        {
+          "value": "items-center text-center",
+          "label": "Center"
+        },
+        {
+          "value": "items-end text-right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_vertical_position",
+      "label": "Content vertical position",
+      "default": "justify-center",
+      "options": [
+        {
+          "value": "justify-start",
+          "label": "Top"
+        },
+        {
+          "value": "justify-center",
+          "label": "Middle"
+        },
+        {
+          "value": "justify-end",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+     "type": "select",
+     "id": "content_width",
+     "label": "Content width",
+     "default": "md:w-2/3",
+        "options": [
+        {
+            "value": "md:w-full",
+            "label": "Full width"
+        },
+        {
+            "value": "md:w-3/4",
+            "label": "3/4 width"
+        },
+        {
+            "value": "md:w-2/3",
+            "label": "2/3 width"
+        },
+        {
+            "value": "md:w-1/2",
+            "label": "1/2 width"
+        }
+        ]
+    },
+    {
+      "type": "header",
+      "content": "Section layout settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width section",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Color scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

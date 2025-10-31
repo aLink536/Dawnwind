@@ -20,6 +20,7 @@ html:has(dialog[scroll-lock][open], details[scroll-lock][open]) {
 }
 
 
+
 input,
 textarea,
 select {
@@ -65,12 +66,9 @@ p:empty {
     margin-block-end: 0;
 }
 
-/** Theme styles below */
-body {
-    font-family: var(--font-primary--family);
-}
 
-/* Page width */
+/* Utility classes */
+
 .page-width {
     padding-left: var(--container-padding);
     padding-right: var(--container-padding);
@@ -93,15 +91,102 @@ body {
     padding-bottom: var(--container-padding);
 }
 
-.color-scheme {
-  color: var(--color-foreground);
-  background-color: var(--color-background);
+.stack {
+    display: grid;
 }
 
-/* Auto-map any color scheme dynamically */
-[class*="color-scheme--scheme-"] {
-  --color-background: rgb(var(--color-scheme-background));
-  --color-foreground: rgb(var(--color-scheme-foreground));
-  --color-button: rgb(var(--color-scheme-button));
-  --color-button-text: rgb(var(--color-scheme-button-label));
+.stack>* {
+    grid-area: 1 / 1;
+}
+
+/* Color scheme utility */
+
+.color-scheme {
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+}
+
+
+/* ======================================================
+   TYPOGRAPHY — Sizes & Weights Only
+   Driven by CSS variables from settings_schema
+   ====================================================== */
+
+body {
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-body);
+    font-family: var(--font-primary--family);
+ 
+}
+
+/* Headings (elements + utility classes) */
+h1,
+.h1 {
+    font-size: var(--font-size-h1);
+    font-weight: var(--font-weight-heading);
+}
+
+h2,
+.h2 {
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-heading);
+}
+
+h3,
+.h3 {
+    font-size: var(--font-size-h3);
+    font-weight: var(--font-weight-heading);
+}
+
+h4,
+.h4 {
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-heading);
+}
+
+h5,
+.h5 {
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-weight-heading);
+}
+
+h1,.h1,
+h2,.h2,
+h3,.h3,
+h4,.h4,
+h5,.h5,
+h6,.h6 {
+    line-height: 1.1em;
+}
+
+/* Buttons and Links */
+
+.button-primary{
+    background-color: var(--color-button);
+    color: var(--color-button-label);
+    border: none;
+    border-radius: var(--style-border-radius-inputs);
+    font-weight: var(--font-weight-button);
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+.button-primary:hover{
+    background-color: var(--color-secondary-button);
+    color: var(--color-secondary-button-label);
+}
+
+.button-secondary{
+    background-color: var(--color-secondary-button);
+    color: var(--color-secondary-button-label);
+    border: none;
+    border-radius: var(--style-border-radius-inputs);
+    font-weight: var(--font-weight-button);
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+.button-secondary:hover{
+    background-color: var(--color-button);
+    color: var(--color-button-label);
 }
