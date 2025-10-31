@@ -1,11 +1,11 @@
 {% if section.settings.hero_image_desktop or section.settings.hero_image_mobile %}
-  <section class="color-scheme color-scheme--{{ section.settings.color_scheme }} stack {% unless section.settings.full_width %}page-width{% endunless %}">
-    <div>
+  <section class="color-scheme color-scheme--{{ section.settings.color_scheme }} stack relative overflow-hidden {% unless section.settings.full_width %}page-width{% endunless %}">
+    <div class="max-h-[60vh]">
       {% if section.settings.hero_image_mobile %}
         {{
           section.settings.hero_image_mobile
           | image_url: width: 1200
-          | image_tag: alt: 'Hero image (mobile)', class: 'w-full h-auto object-cover block md:hidden'
+          | image_tag: alt: 'Hero image (mobile)', class: 'w-full h-full object-cover block md:hidden'
         }}
       {% endif %}
 
@@ -13,38 +13,40 @@
         {{
           section.settings.hero_image_desktop
           | image_url: width: 2000
-          | image_tag: alt: 'Hero image (desktop)', class: 'w-full h-auto object-cover hidden md:block'
+          | image_tag: alt: 'Hero image (desktop)', class: 'w-full h-full object-cover hidden md:block'
         }}
       {% endif %}
     </div>
+    <div class="page-width w-full text-center py-default flex flex-col gap-3 z-10 {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
+      <div class="flex flex-col gap-3 w-full {{ section.settings.content_width }} {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
+        {% if section.settings.hero_heading != blank %}
+          <h2 class="">
+            {{ section.settings.hero_heading }}
+          </h2>
+        {% endif %}
 
-    <div class="page-width w-full text-center py-default flex flex-col gap-3 {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
-    <div class="flex flex-col gap-3 w-full {{ section.settings.content_width }} {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
-      {% if section.settings.hero_heading != blank %}
-        <h2 class="">
-          {{ section.settings.hero_heading }}
-        </h2>
-      {% endif %}
-
-      {% if section.settings.hero_subheading != blank %}
-        <p class="">
-          {{ section.settings.hero_subheading }}
-        </p>
-      {% endif %}
-      {% if section.settings.hero_button_text != blank and section.settings.hero_button_link != blank %}
-        <div class="flex gap-3 flex-wrap">
-          <a href="{{ section.settings.hero_button_link }}" class="button-primary">
-            {{ section.settings.hero_button_text }}
-          </a>
-          {% if section.settings.hero_secondary_button_text != blank %}
-            <a href="{{ section.settings.hero_secondary_button_link }}" class="button-secondary">
-              {{ section.settings.hero_secondary_button_text }}
+        {% if section.settings.hero_subheading != blank %}
+          <p class="">
+            {{ section.settings.hero_subheading }}
+          </p>
+        {% endif %}
+        {% if section.settings.hero_button_text != blank and section.settings.hero_button_link != blank %}
+          <div class="flex gap-3 flex-wrap justify-center">
+            <a href="{{ section.settings.hero_button_link }}" class="button-primary">
+              {{ section.settings.hero_button_text }}
             </a>
-          {% endif %}
-        </div>
-      {% endif %}
+            {% if section.settings.hero_secondary_button_text != blank %}
+              <a href="{{ section.settings.hero_secondary_button_link }}" class="button-secondary">
+                {{ section.settings.hero_secondary_button_text }}
+              </a>
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
     </div>
+     {% if section.settings.overlay_enabled %}
+      <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
+    {% endif %}
   </section>
 {% endif %}
 
@@ -65,6 +67,12 @@
       "type": "image_picker",
       "id": "hero_image_mobile",
       "label": "Hero image (mobile)"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay_enabled",
+      "label": "Enable overlay",
+      "default": false
     },
     {
       "type": "header",
@@ -145,28 +153,28 @@
       ]
     },
     {
-     "type": "select",
-     "id": "content_width",
-     "label": "Content width",
-     "default": "md:w-2/3",
-        "options": [
+      "type": "select",
+      "id": "content_width",
+      "label": "Content width",
+      "default": "md:w-2/3",
+      "options": [
         {
-            "value": "md:w-full",
-            "label": "Full width"
+          "value": "md:w-full",
+          "label": "Full width"
         },
         {
-            "value": "md:w-3/4",
-            "label": "3/4 width"
+          "value": "md:w-3/4",
+          "label": "3/4 width"
         },
         {
-            "value": "md:w-2/3",
-            "label": "2/3 width"
+          "value": "md:w-2/3",
+          "label": "2/3 width"
         },
         {
-            "value": "md:w-1/2",
-            "label": "1/2 width"
+          "value": "md:w-1/2",
+          "label": "1/2 width"
         }
-        ]
+      ]
     },
     {
       "type": "header",
