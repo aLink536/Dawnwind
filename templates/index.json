@@ -15,6 +15,7 @@
       "settings": {
         "hero_image_desktop": "shopify://shop_images/tying-up-boot-laces.jpg",
         "hero_image_mobile": "shopify://shop_images/wooden-watch.jpg",
+        "overlay_enabled": false,
         "hero_heading": "Dawnwind",
         "hero_subheading": "a clean, responsive Shopify theme built from the ground up with Tailwind CSS for total design control and modern performance.",
         "hero_button_text": "Primary Button",
