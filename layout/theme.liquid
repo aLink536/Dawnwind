@@ -12,7 +12,7 @@
     {{ content_for_header }}
   </head>
 
-  <body>
+  <body class="color-scheme color-scheme--{{ settings.color_theme_scheme }}">
     {% sections 'header-group' %}
 
     {{ content_for_layout }}

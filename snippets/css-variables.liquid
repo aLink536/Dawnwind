@@ -1,29 +1,32 @@
 {% style %}
-  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+    {{ settings.type_primary_font | font_face: font_display: 'swap' }}
+    {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
+    {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+    {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
 
-  :root {
-    /* Typography */
-    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-    --font-primary--style: {{ settings.type_primary_font.style }};
-    --font-primary--weight: {{ settings.type_primary_font.weight }};
+    :root {
+      /* Typography */
+      --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
+      --font-primary--style: {{ settings.type_primary_font.style }};
+      --font-primary--weight: {{ settings.type_primary_font.weight }};
 
-    /* Layout */
-    --container-max-width: {{ settings.max_page_width }}px;
-    --container-padding: {{ settings.container_padding }}%;
-    --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+      /* Layout */
+      --container-max-width: {{ settings.max_page_width }}px;
+      --container-padding: {{ settings.container_padding }}%;
+      --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
 
-    {%- assign scheme = settings.color_theme_scheme | default: 'scheme-1' -%}
-    --color-background: {{ scheme.settings.background }};
-    --gradient-background: {{ scheme.settings.background_gradient }};
-    --color-foreground: {{ scheme.settings.text }};
-    --color-accent: {{ scheme.settings.accent }};
-    --color-button: {{ scheme.settings.button }};
-    --color-button-label: {{ scheme.settings.button_label }};
-    --color-secondary-button: {{ scheme.settings.secondary_button }};
-    --color-secondary-button-label: {{ scheme.settings.secondary_button_label }};
-    --color-shadow: {{ scheme.settings.shadow }};
-  }
+  {% for scheme in settings.color_schemes %}
+    .color-scheme--{{ scheme.id }} {
+      --color-background: {{ scheme.settings.background }};
+      --gradient-background: {{ scheme.settings.background_gradient }};
+      --color-foreground: {{ scheme.settings.text }};
+      --color-accent: {{ scheme.settings.accent }};
+      --color-button: {{ scheme.settings.button }};
+      --color-button-label: {{ scheme.settings.button_label }};
+      --color-secondary-button: {{ scheme.settings.secondary_button }};
+      --color-secondary-button-label: {{ scheme.settings.secondary_button_label }};
+      --color-shadow: {{ scheme.settings.shadow }};
+    }
+  {% endfor %}
+    }
 {% endstyle %}

@@ -68,8 +68,6 @@ p:empty {
 /** Theme styles below */
 body {
     font-family: var(--font-primary--family);
-    background-color: var(--color-background);
-    color: var(--color-foreground);
 }
 
 /* Page width */
@@ -93,4 +91,17 @@ body {
 .py-default {
     padding-top: var(--container-padding);
     padding-bottom: var(--container-padding);
+}
+
+.color-scheme {
+  color: var(--color-foreground);
+  background-color: var(--color-background);
+}
+
+/* Auto-map any color scheme dynamically */
+[class*="color-scheme--scheme-"] {
+  --color-background: rgb(var(--color-scheme-background));
+  --color-foreground: rgb(var(--color-scheme-foreground));
+  --color-button: rgb(var(--color-scheme-button));
+  --color-button-text: rgb(var(--color-scheme-button-label));
 }

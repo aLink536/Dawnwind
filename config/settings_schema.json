@@ -53,12 +53,6 @@
         "default": "scheme-1"
       },
       {
-        "type": "color_scheme",
-        "id": "color_section_scheme",
-        "label": "Default section color scheme",
-        "default": "scheme-1"
-      },
-      {
         "type": "range",
         "id": "input_corner_radius",
         "min": 0,
