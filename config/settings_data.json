@@ -8,5 +8,53 @@
  * ------------------------------------------------------------
  */
 {
-  "current": {}
+  "current": {
+    "type_primary_font": "sans_serif_n4",
+    "max_page_width": 1400,
+    "color_theme_scheme": "scheme-2",
+    "color_section_scheme": "scheme-1",
+    "color_scheme": "scheme-2",
+    "content_for_index": [],
+    "color_schemes": {
+      "scheme-1": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text": "#121212",
+          "accent": "#007ace",
+          "button": "#121212",
+          "button_label": "#ffffff",
+          "secondary_button": "#ffffff",
+          "secondary_button_label": "#121212",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-2": {
+        "settings": {
+          "background": "#2f2f2f",
+          "background_gradient": "",
+          "text": "#ffffff",
+          "accent": "#007ace",
+          "button": "#ffffff",
+          "button_label": "#121212",
+          "secondary_button": "#121212",
+          "secondary_button_label": "#ffffff",
+          "shadow": "#000000"
+        }
+      },
+      "scheme-5da9c5a7-1a21-488b-a421-72bfcc925f6b": {
+        "settings": {
+          "background": "#ffffff",
+          "background_gradient": "",
+          "text": "#121212",
+          "accent": "#007ace",
+          "button": "#121212",
+          "button_label": "#ffffff",
+          "secondary_button": "#ffffff",
+          "secondary_button_label": "#121212",
+          "shadow": "#121212"
+        }
+      }
+    }
+  }
 }
