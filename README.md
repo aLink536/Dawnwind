@@ -23,17 +23,6 @@ Designed for speed, simplicity, and creative flexibility — without unnecessary
 
 ---
 
-## ⚙️ Features (WIP)
-
-- Responsive, mobile-first layout system  
-- Dynamic typography with CSS variables and `clamp()`  
-- Flexible color schemes via theme settings  
-- Modular header with multiple layout options  
-- Simple, composable sections and snippets  
-- Native slider web component  
-- Custom theme settings for layout, spacing, and type scales
-
----
 
 Dawnwind is built upon the **[Shopify Skeleton Theme](https://github.com/Shopify/skeleton-theme)** —  
 used as a lightweight starting point and extended with **Tailwind CSS** and custom web components.
