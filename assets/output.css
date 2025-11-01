@@ -206,12 +206,6 @@
   .top-0 {
     top: calc(var(--spacing) * 0);
   }
-  .top-1 {
-    top: calc(var(--spacing) * 1);
-  }
-  .top-1\/2 {
-    top: calc(1/2 * 100%);
-  }
   .-right-2 {
     right: calc(var(--spacing) * -2);
   }
@@ -260,9 +254,6 @@
   .inline {
     display: inline;
   }
-  .table {
-    display: table;
-  }
   .aspect-\[4\/5\] {
     aspect-ratio: 4/5;
   }
@@ -296,23 +287,8 @@
   .w-6 {
     width: calc(var(--spacing) * 6);
   }
-  .w-\[43\.5\%\] {
-    width: 43.5%;
-  }
-  .w-\[45\%\] {
-    width: 45%;
-  }
-  .w-\[46\%\] {
-    width: 46%;
-  }
   .w-\[47\%\] {
     width: 47%;
-  }
-  .w-\[50\%\] {
-    width: 50%;
-  }
-  .w-\[80\%\] {
-    width: 80%;
   }
   .w-full {
     width: 100%;
@@ -320,14 +296,8 @@
   .flex-1 {
     flex: 1;
   }
-  .flex-shrink {
-    flex-shrink: 1;
-  }
   .shrink-0 {
     flex-shrink: 0;
-  }
-  .border-collapse {
-    border-collapse: collapse;
   }
   .rotate-180 {
     rotate: 180deg;
@@ -337,12 +307,6 @@
   }
   .cursor-pointer {
     cursor: pointer;
-  }
-  .resize {
-    resize: both;
-  }
-  .snap-both {
-    scroll-snap-type: both var(--tw-scroll-snap-strictness);
   }
   .snap-x {
     scroll-snap-type: x var(--tw-scroll-snap-strictness);
@@ -420,35 +384,14 @@
   .object-cover {
     object-fit: cover;
   }
-  .\!p-5 {
-    padding: calc(var(--spacing) * 5) !important;
-  }
-  .p-2 {
-    padding: calc(var(--spacing) * 2);
-  }
-  .p-5 {
-    padding: calc(var(--spacing) * 5);
-  }
-  .p-\[5px\] {
-    padding: 5px;
-  }
-  .px-1 {
-    padding-inline: calc(var(--spacing) * 1);
-  }
   .px-1\.5 {
     padding-inline: calc(var(--spacing) * 1.5);
-  }
-  .py-0 {
-    padding-block: calc(var(--spacing) * 0);
   }
   .py-0\.5 {
     padding-block: calc(var(--spacing) * 0.5);
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
-  }
-  .py-10 {
-    padding-block: calc(var(--spacing) * 10);
   }
   .text-center {
     text-align: center;
@@ -483,9 +426,6 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
-  .text-wrap {
-    text-wrap: wrap;
-  }
   .text-\(--color-foreground\) {
     color: var(--color-foreground);
   }
@@ -498,9 +438,6 @@
   .line-through {
     text-decoration-line: line-through;
   }
-  .underline {
-    text-decoration-line: underline;
-  }
   .opacity-50 {
     opacity: 50%;
   }
@@ -510,10 +447,6 @@
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -549,16 +482,6 @@
       outline-style: none;
     }
   }
-  .sm\:w-\[45\%\] {
-    @media (width >= 40rem) {
-      width: 45%;
-    }
-  }
-  .sm\:w-\[48\%\] {
-    @media (width >= 40rem) {
-      width: 48%;
-    }
-  }
   .md\:block {
     @media (width >= 48rem) {
       display: block;
@@ -584,59 +507,14 @@
       width: calc(3/4 * 100%);
     }
   }
-  .md\:w-\[31\.5\%\] {
-    @media (width >= 48rem) {
-      width: 31.5%;
-    }
-  }
   .md\:w-full {
     @media (width >= 48rem) {
       width: 100%;
     }
   }
-  .lg\:absolute {
-    @media (width >= 64rem) {
-      position: absolute;
-    }
-  }
-  .lg\:top-1\/2 {
-    @media (width >= 64rem) {
-      top: calc(1/2 * 100%);
-    }
-  }
-  .lg\:w-1\/2 {
-    @media (width >= 64rem) {
-      width: calc(1/2 * 100%);
-    }
-  }
   .lg\:w-\[23\.5\%\] {
     @media (width >= 64rem) {
       width: 23.5%;
-    }
-  }
-  .lg\:w-\[25\%\] {
-    @media (width >= 64rem) {
-      width: 25%;
-    }
-  }
-  .lg\:w-\[28\%\] {
-    @media (width >= 64rem) {
-      width: 28%;
-    }
-  }
-  .lg\:w-\[30\%\] {
-    @media (width >= 64rem) {
-      width: 30%;
-    }
-  }
-  .lg\:w-\[32\%\] {
-    @media (width >= 64rem) {
-      width: 32%;
-    }
-  }
-  .lg\:w-\[33\%\] {
-    @media (width >= 64rem) {
-      width: 33%;
     }
   }
   .\[\&\>svg\]\:h-\[30px\] {
@@ -895,11 +773,6 @@ h1,.h1, h2,.h2, h3,.h3, h4,.h4, h5,.h5, h6,.h6 {
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -986,7 +859,6 @@ h1,.h1, h2,.h2, h3,.h3, h4,.h4, h5,.h5, h6,.h6 {
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;

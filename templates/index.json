@@ -15,6 +15,7 @@
       "settings": {
         "hero_image_desktop": "shopify://shop_images/tying-up-boot-laces.jpg",
         "hero_image_mobile": "shopify://shop_images/wooden-watch.jpg",
+        "overlay_enabled": false,
         "hero_heading": "Dawnwind",
         "hero_subheading": "a clean, responsive Shopify theme built from the ground up with Tailwind CSS for total design control and modern performance.",
         "hero_button_text": "Primary Button",
@@ -23,22 +24,24 @@
         "hero_secondary_button_link": "",
         "content_horizontal_position": "items-center text-center",
         "content_vertical_position": "justify-end",
-        "content_width": "lg:w-1/2",
+        "content_width": "md:w-1/2",
         "full_width": true,
         "color_scheme": "scheme-5da9c5a7-1a21-488b-a421-72bfcc925f6b"
       }
     },
-    "collections_ypKP8Y": {
-      "type": "collections",
-      "name": "t:general.collections_grid",
+    "featured_collection_zdhnpd": {
+      "type": "featured-collection",
+      "name": "Featured Collection",
       "settings": {
-        "grid_item_width": "collections--full",
-        "grid_gap": 10
+        "section_heading": "Watches",
+        "collection": "hamilton-watches",
+        "content_horizontal_position": "text-center",
+        "color_scheme": "scheme-1"
       }
     }
   },
   "order": [
     "hero_YPkie4",
-    "collections_ypKP8Y"
+    "featured_collection_zdhnpd"
   ]
 }
