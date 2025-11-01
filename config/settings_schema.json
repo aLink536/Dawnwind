@@ -239,6 +239,35 @@
     ]
   },
   {
+    "name": "Product cards",
+    "settings": [
+      {
+        "type": "select",
+        "id": "image_aspect_ratio",
+        "label": "Image aspect ratio",
+        "default": "aspect-square",
+        "options": [
+          {
+            "value": "aspect-auto",
+            "label": "Adapt to image"
+          },
+          {
+            "value": "aspect-square",
+            "label": "1:1 Square"
+          },
+          {
+            "value": "aspect-[4/5]",
+            "label": "4:5 Portrait"
+          },
+          {
+            "value": "aspect-[5/4]",
+            "label": "5:4 Landscape"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "name": "Layout",
     "settings": [
       {

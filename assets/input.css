@@ -99,6 +99,14 @@ p:empty {
     grid-area: 1 / 1;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 /* Color scheme utility */
 
 .color-scheme {

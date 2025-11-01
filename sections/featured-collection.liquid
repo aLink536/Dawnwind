@@ -1,0 +1,109 @@
+<section class="page-width p-default gap-8 flex flex-col color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_horizontal_position }}">
+  {% if section.settings.section_heading != blank %}
+    <h2>
+      <a href="{{ section.settings.collection.url }}">{{ section.settings.section_heading }}</a>
+    </h2>
+  {% endif %}
+
+  {% if section.settings.collection != blank %}
+    {% assign collection_handle = section.settings.collection %}
+    {% assign collection = collections[collection_handle] %}
+
+    {% if collection.products_count > 0 %}
+      <simple-slider
+        class="flex flex-col gap-3 relative"
+      >
+        <div
+          class="overflow-x-auto flex gap-6 scroll-smooth snap-x snap-mandatory focus:outline-none no-scrollbar"
+          tabindex="0"
+        >
+          {% for product in collection.products limit: 10 %}
+            <div class="snap-start shrink-0 w-[47%] lg:w-[23.5%]">
+              {% render 'product-card', product: product %}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="flex w-full justify-between ">
+          <button
+            class="slider-nav rotate-180 aspect-square cursor-pointer button-secondary transition-opacity duration-200 ease-in-out"
+            aria-label="Previous"
+          >
+            {{ 'icon-arrow.svg' | inline_asset_content }}
+          </button>
+          <button
+            class="slider-nav aspect-square cursor-pointer button-secondary transition-opacity duration-200 ease-in-out"
+            aria-label="Next"
+          >
+            {{ 'icon-arrow.svg' | inline_asset_content }}
+          </button>
+        </div>
+      </simple-slider>
+
+      <div class="mt-6 text-center">
+        <a href="{{ collection.url }}" class="button-primary">View All Products</a>
+      </div>
+    {% else %}
+      <p>No products found in this collection.</p>
+    {% endif %}
+  {% else %}
+    <p>Please select a collection to feature.</p>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Select collection"
+    },
+    {
+      "type": "header",
+      "content": "Content layout settings"
+    },
+    {
+      "type": "select",
+      "id": "content_horizontal_position",
+      "label": "Content horizontal position",
+      "default": "text-center",
+      "options": [
+        {
+          "value": "text-left",
+          "label": "Left"
+        },
+        {
+          "value": "text-center",
+          "label": "Center"
+        },
+        {
+          "value": "text-right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Color scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection",
+      "category": "Collections"
+    }
+  ]
+}
+{% endschema %}
