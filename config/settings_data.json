@@ -54,8 +54,8 @@
           "background_gradient": "",
           "text": "#ffffff",
           "accent": "#007ace",
-          "button": "#ffffff",
-          "button_label": "#000000",
+          "button": "#121212",
+          "button_label": "#ffffff",
           "secondary_button": "#2f2f2f",
           "secondary_button_label": "#fafafa",
           "shadow": "#121212"
