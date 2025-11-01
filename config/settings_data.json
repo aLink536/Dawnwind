@@ -30,8 +30,8 @@
           "accent": "#007ace",
           "button": "#121212",
           "button_label": "#ffffff",
-          "secondary_button": "#ffffff",
-          "secondary_button_label": "#121212",
+          "secondary_button": "#2f2f2f",
+          "secondary_button_label": "#ffffff",
           "shadow": "#121212"
         }
       },
@@ -56,7 +56,7 @@
           "accent": "#007ace",
           "button": "#ffffff",
           "button_label": "#000000",
-          "secondary_button": "#007ace",
+          "secondary_button": "#2f2f2f",
           "secondary_button_label": "#fafafa",
           "shadow": "#121212"
         }
