@@ -13,7 +13,7 @@
       "type": "hero",
       "name": "Hero",
       "settings": {
-        "hero_image_desktop": "shopify://shop_images/tying-up-boot-laces.jpg",
+        "hero_image_desktop": "shopify://shop_images/watch-and-gloves-on-hand-pointing.jpg",
         "hero_image_mobile": "shopify://shop_images/wooden-watch.jpg",
         "overlay_enabled": false,
         "hero_heading": "Dawnwind",
@@ -22,11 +22,62 @@
         "hero_button_link": "shopify://collections/all",
         "hero_secondary_button_text": "Secondary Button",
         "hero_secondary_button_link": "",
-        "content_horizontal_position": "items-center text-center",
+        "content_horizontal_position": "items-start text-left",
         "content_vertical_position": "justify-end",
         "content_width": "md:w-1/2",
         "full_width": true,
         "color_scheme": "scheme-5da9c5a7-1a21-488b-a421-72bfcc925f6b"
+      }
+    },
+    "usps_kzLaPg": {
+      "type": "usps",
+      "blocks": {
+        "usp_7pM3tX": {
+          "type": "usp",
+          "settings": {
+            "usp_text": "Free Shipping",
+            "usp_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-truck\" viewBox=\"0 0 16 16\">\n  <path d=\"M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2\"/>\n</svg>",
+            "usp_subtext": "On orders over $50",
+            "usp_link": "#"
+          }
+        },
+        "usp_Xhb8Nd": {
+          "type": "usp",
+          "settings": {
+            "usp_text": "Free Shipping",
+            "usp_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-truck\" viewBox=\"0 0 16 16\">\n  <path d=\"M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2\"/>\n</svg>",
+            "usp_subtext": "On orders over $50",
+            "usp_link": ""
+          }
+        },
+        "usp_eejYtF": {
+          "type": "usp",
+          "settings": {
+            "usp_text": "Free Shipping",
+            "usp_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-truck\" viewBox=\"0 0 16 16\">\n  <path d=\"M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2\"/>\n</svg>",
+            "usp_subtext": "On orders over $50",
+            "usp_link": ""
+          }
+        },
+        "usp_zQLGXT": {
+          "type": "usp",
+          "settings": {
+            "usp_text": "Free Shipping",
+            "usp_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" class=\"bi bi-truck\" viewBox=\"0 0 16 16\">\n  <path d=\"M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5zm1.294 7.456A2 2 0 0 1 4.732 11h5.536a2 2 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456M12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2\"/>\n</svg>",
+            "usp_subtext": "On orders over $50",
+            "usp_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "usp_7pM3tX",
+        "usp_Xhb8Nd",
+        "usp_eejYtF",
+        "usp_zQLGXT"
+      ],
+      "name": "USPs",
+      "settings": {
+        "color_scheme": "scheme-2"
       }
     },
     "featured_collection_zdhnpd": {
@@ -38,10 +89,29 @@
         "content_horizontal_position": "text-center",
         "color_scheme": "scheme-1"
       }
+    },
+    "split_box_6Ypeqa": {
+      "type": "split-box",
+      "name": "Split box",
+      "settings": {
+        "image": "shopify://shop_images/tying-up-boot-laces.jpg",
+        "heading": "Split box",
+        "subheading": "A classic overused section",
+        "button_text": "View all",
+        "button_link": "#",
+        "button_secondary_text": "View even more",
+        "button_secondary_link": "",
+        "image_position": "flex-row-reverse",
+        "content_horizontal_position": "items-start text-left",
+        "content_vertical_position": "justify-center",
+        "color_scheme": "scheme-2"
+      }
     }
   },
   "order": [
     "hero_YPkie4",
-    "featured_collection_zdhnpd"
+    "usps_kzLaPg",
+    "featured_collection_zdhnpd",
+    "split_box_6Ypeqa"
   ]
 }

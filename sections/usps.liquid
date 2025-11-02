@@ -1,0 +1,99 @@
+<section>
+  <simple-slider
+    class="flex flex-col gap-3 py-3 color-scheme color-scheme--{{ section.settings.color_scheme }}"
+  >
+    <div class="items-center w-full page-width stack">
+      <div
+        class="flex gap-6 overflow-x-auto w scroll-smooth snap-x snap-mandatory focus:outline-none no-scrollbar"
+        tabindex="0"
+      >
+        {% for block in section.blocks %}
+          <a
+            class="snap-start shrink-0 z-10 w-full md:w-1/2 lg:w-[calc((100%-72px)/4)] text-center flex flex-col gap-1 {% if block.settings.usp_link == blank %} cursor-default {%else%} hover:opacity-80 {% endif %}"
+            href="{{ block.settings.usp_link }}"
+          >
+            {% if block.settings.usp_icon != blank %}
+              <div class="flex items-center justify-center text-center">
+                {{ block.settings.usp_icon }}
+              </div>
+            {% endif %}
+            <p class="h5">{{ block.settings.usp_text }}</p>
+            {% if block.settings.usp_subtext != blank %}
+              <p class="text-sm text-muted">{{ block.settings.usp_subtext }}</p>
+            {% endif %}
+          </a>
+        {% endfor %}
+      </div>
+
+      <div class="flex justify-between w-full gap-3">
+        <button
+          class="transition-opacity duration-200 ease-in-out rotate-180 opacity-0 cursor-pointer slider-nav button-secondary"
+          aria-label="Previous"
+        >
+          {{ 'icon-arrow-short.svg' | inline_asset_content }}
+        </button>
+        <button
+          class="transition-opacity duration-200 ease-in-out opacity-0 cursor-pointer slider-nav button-secondary"
+          aria-label="Next"
+        >
+          {{ 'icon-arrow-short.svg' | inline_asset_content }}
+        </button>
+      </div>
+    </div>
+  </simple-slider>
+</section>
+{% schema %}
+{
+  "name": "USPs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Color scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "usp",
+      "name": "USP",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "usp_text",
+          "label": "USP Text",
+          "default": "Free Shipping"
+        },
+        {
+          "type": "liquid",
+          "id": "usp_icon",
+          "label": "Icon (HTML/SVG)",
+          "info": "Paste inline SVG or custom HTML markup here. (https://icons.getbootstrap.com/)"
+        },
+        {
+          "type": "text",
+          "id": "usp_subtext",
+          "label": "USP Subtext",
+          "default": "On orders over $50"
+        },
+        {
+          "type": "url",
+          "id": "usp_link",
+          "label": "USP Link"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "USPs",
+      "category": "Design"
+    }
+  ]
+}
+{% endschema %}

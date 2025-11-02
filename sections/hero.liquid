@@ -31,7 +31,7 @@
           </p>
         {% endif %}
         {% if section.settings.hero_button_text != blank and section.settings.hero_button_link != blank %}
-          <div class="flex gap-3 flex-wrap justify-center">
+          <div class="flex flex-wrap justify-center gap-3">
             <a href="{{ section.settings.hero_button_link }}" class="button-primary">
               {{ section.settings.hero_button_text }}
             </a>
@@ -44,7 +44,7 @@
         {% endif %}
       </div>
     </div>
-     {% if section.settings.overlay_enabled %}
+    {% if section.settings.overlay_enabled %}
       <div class="absolute top-0 left-0 w-full h-full bg-black opacity-50"></div>
     {% endif %}
   </section>
@@ -198,7 +198,8 @@
   ],
   "presets": [
     {
-      "name": "Hero"
+      "name": "Hero",
+      "category": "Design"
     }
   ]
 }

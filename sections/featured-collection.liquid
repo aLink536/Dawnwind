@@ -11,10 +11,10 @@
 
     {% if collection.products_count > 0 %}
       <simple-slider
-        class="flex flex-col gap-3 relative"
+        class="relative flex flex-col gap-3"
       >
         <div
-          class="overflow-x-auto flex gap-6 scroll-smooth snap-x snap-mandatory focus:outline-none no-scrollbar"
+          class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory focus:outline-none no-scrollbar"
           tabindex="0"
         >
           {% for product in collection.products limit: 10 %}
@@ -24,15 +24,15 @@
           {% endfor %}
         </div>
 
-        <div class="flex w-full justify-between ">
+        <div class="flex justify-between w-full ">
           <button
-            class="slider-nav rotate-180 aspect-square cursor-pointer button-secondary transition-opacity duration-200 ease-in-out"
+            class="transition-opacity duration-200 ease-in-out rotate-180 cursor-pointer slider-nav aspect-square button-secondary"
             aria-label="Previous"
           >
             {{ 'icon-arrow.svg' | inline_asset_content }}
           </button>
           <button
-            class="slider-nav aspect-square cursor-pointer button-secondary transition-opacity duration-200 ease-in-out"
+            class="transition-opacity duration-200 ease-in-out cursor-pointer slider-nav aspect-square button-secondary"
             aria-label="Next"
           >
             {{ 'icon-arrow.svg' | inline_asset_content }}

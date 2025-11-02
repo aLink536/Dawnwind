@@ -1,0 +1,155 @@
+<section class="flex {{ section.settings.image_position }} flex-wrap justify-center w-full page-width">
+  <div class="w-full lg:w-1/2">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1300 | image_tag: class: 'w-full h-full object-cover' }}
+    {% endif %}
+  </div>
+
+  <div class="flex lg:w-1/2 flex-col w-full gap-3 p-default color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
+    {% if section.settings.heading != blank %}
+      <h2 class="">
+        {{ section.settings.heading }}
+      </h2>
+    {% endif %}
+
+    {% if section.settings.subheading != blank %}
+      <p class="">
+        {{ section.settings.subheading }}
+      </p>
+    {% endif %}
+    {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+      <div class="flex flex-wrap gap-3">
+        <a href="{{ section.settings.button_link }}" class="button-primary">
+          {{ section.settings.button_text }}
+        </a>
+        {% if section.settings.button_secondary_text != blank %}
+          <a href="{{ section.settings.button_secondary_link }}" class="button-secondary">
+            {{ section.settings.button_secondary_text }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Split box",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_secondary_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_secondary_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "Layout settings"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position",
+      "default": "flex-row-reverse",
+      "options": [
+        {
+          "value": "flex-row",
+          "label": "Left"
+        },
+        {
+          "value": "flex-row-reverse",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_horizontal_position",
+      "label": "Content horizontal position",
+      "default": "items-center text-center",
+      "options": [
+        {
+          "value": "items-start text-left",
+          "label": "Left"
+        },
+        {
+          "value": "items-center text-center",
+          "label": "Center"
+        },
+        {
+          "value": "items-end text-right",
+          "label": "Right"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_vertical_position",
+      "label": "Content vertical position",
+      "default": "justify-center",
+      "options": [
+        {
+          "value": "justify-start",
+          "label": "Top"
+        },
+        {
+          "value": "justify-center",
+          "label": "Middle"
+        },
+        {
+          "value": "justify-end",
+          "label": "Bottom"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Color scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Split box",
+      "category": "Design"
+    }
+  ]
+}
+{% endschema %}
