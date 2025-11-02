@@ -1,54 +1,56 @@
-<section class="page-width p-default gap-8 flex flex-col color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_horizontal_position }}">
-  {% if section.settings.section_heading != blank %}
-    <h2>
-      <a href="{{ section.settings.collection.url }}">{{ section.settings.section_heading }}</a>
-    </h2>
-  {% endif %}
-
-  {% if section.settings.collection != blank %}
-    {% assign collection_handle = section.settings.collection %}
-    {% assign collection = collections[collection_handle] %}
-
-    {% if collection.products_count > 0 %}
-      <simple-slider
-        class="relative flex flex-col gap-3"
-      >
-        <div
-          class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory focus:outline-none no-scrollbar"
-          tabindex="0"
-        >
-          {% for product in collection.products limit: 10 %}
-            <div class="snap-start shrink-0 w-[47%] lg:w-[23.5%]">
-              {% render 'product-card', product: product %}
-            </div>
-          {% endfor %}
-        </div>
-
-        <div class="flex justify-between w-full ">
-          <button
-            class="transition-opacity duration-200 ease-in-out rotate-180 cursor-pointer slider-nav aspect-square button-secondary"
-            aria-label="Previous"
-          >
-            {{ 'icon-arrow.svg' | inline_asset_content }}
-          </button>
-          <button
-            class="transition-opacity duration-200 ease-in-out cursor-pointer slider-nav aspect-square button-secondary"
-            aria-label="Next"
-          >
-            {{ 'icon-arrow.svg' | inline_asset_content }}
-          </button>
-        </div>
-      </simple-slider>
-
-      <div class="mt-6 text-center">
-        <a href="{{ collection.url }}" class="button-primary">View All Products</a>
-      </div>
-    {% else %}
-      <p>No products found in this collection.</p>
+<section class="gap-8 flex flex-col color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_horizontal_position }}">
+  <div class="w-full page-width p-default">
+    {% if section.settings.section_heading != blank %}
+      <h2>
+        <a href="{{ section.settings.collection.url }}">{{ section.settings.section_heading }}</a>
+      </h2>
     {% endif %}
-  {% else %}
-    <p>Please select a collection to feature.</p>
-  {% endif %}
+
+    {% if section.settings.collection != blank %}
+      {% assign collection_handle = section.settings.collection %}
+      {% assign collection = collections[collection_handle] %}
+
+      {% if collection.products_count > 0 %}
+        <simple-slider
+          class="relative flex flex-col"
+        >
+          <div
+            class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory focus:outline-none no-scrollbar"
+            tabindex="0"
+          >
+            {% for product in collection.products limit: 10 %}
+              <div class="snap-start shrink-0 w-[47%] lg:w-[23.5%]">
+                {% render 'product-card', product: product %}
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class="flex justify-between w-full ">
+            <button
+              class="transition-opacity duration-200 ease-in-out rotate-180 cursor-pointer slider-nav aspect-square button-secondary"
+              aria-label="Previous"
+            >
+              {{ 'icon-arrow.svg' | inline_asset_content }}
+            </button>
+            <button
+              class="transition-opacity duration-200 ease-in-out cursor-pointer slider-nav aspect-square button-secondary"
+              aria-label="Next"
+            >
+              {{ 'icon-arrow.svg' | inline_asset_content }}
+            </button>
+          </div>
+        </simple-slider>
+
+        <div class="mt-6 text-center">
+          <a href="{{ collection.url }}" class="button-primary">View All Products</a>
+        </div>
+      {% else %}
+        <p>No products found in this collection.</p>
+      {% endif %}
+    {% else %}
+      <p>Please select a collection to feature.</p>
+    {% endif %}
+  </div>
 </section>
 
 {% schema %}

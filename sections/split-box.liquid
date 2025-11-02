@@ -1,34 +1,36 @@
-<section class="flex {{ section.settings.image_position }} flex-wrap justify-center w-full page-width">
-  <div class="w-full lg:w-1/2">
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 1300 | image_tag: class: 'w-full h-full object-cover' }}
-    {% endif %}
-  </div>
+<section class="px-0! py-default page-width">
+  <div class="w-full flex {{ section.settings.image_position }} flex-wrap justify-center">
+    <div class="w-full lg:w-1/2">
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 1300 | image_tag: class: 'w-full h-full object-cover' }}
+      {% endif %}
+    </div>
 
-  <div class="flex lg:w-1/2 flex-col w-full gap-3 p-default color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
-    {% if section.settings.heading != blank %}
-      <h2 class="">
-        {{ section.settings.heading }}
-      </h2>
-    {% endif %}
+    <div class="flex lg:w-1/2 flex-col w-full gap-3 p-default color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
+      {% if section.settings.heading != blank %}
+        <h2 class="">
+          {{ section.settings.heading }}
+        </h2>
+      {% endif %}
 
-    {% if section.settings.subheading != blank %}
-      <p class="">
-        {{ section.settings.subheading }}
-      </p>
-    {% endif %}
-    {% if section.settings.button_text != blank and section.settings.button_link != blank %}
-      <div class="flex flex-wrap gap-3">
-        <a href="{{ section.settings.button_link }}" class="button-primary">
-          {{ section.settings.button_text }}
-        </a>
-        {% if section.settings.button_secondary_text != blank %}
-          <a href="{{ section.settings.button_secondary_link }}" class="button-secondary">
-            {{ section.settings.button_secondary_text }}
+      {% if section.settings.subheading != blank %}
+        <p class="">
+          {{ section.settings.subheading }}
+        </p>
+      {% endif %}
+      {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+        <div class="flex flex-wrap gap-3">
+          <a href="{{ section.settings.button_link }}" class="button-primary">
+            {{ section.settings.button_text }}
           </a>
-        {% endif %}
-      </div>
-    {% endif %}
+          {% if section.settings.button_secondary_text != blank %}
+            <a href="{{ section.settings.button_secondary_link }}" class="button-secondary">
+              {{ section.settings.button_secondary_text }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
   </div>
 </section>
 

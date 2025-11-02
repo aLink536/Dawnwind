@@ -1,25 +1,49 @@
 {% liquid
- assign image_aspect = settings.image_aspect_ratio
+  assign image_aspect = settings.image_aspect_ratio
 %}
-
-<a href="{{ product.url }}" class="flex flex-col gap-3">
-  <div class="{{image_aspect}}">
-    {{
-      product.featured_image
-      | image_url: width: 500
-      | image_tag: alt: product.title, class: 'w-full h-full object-cover block'
-    }}
-  </div>
-  <div class="flex flex-col gap-3 text-center">
-    <span class="text-sm text-gray-500">{{ product.vendor }}</span>
-    <h3 class="text-base font-semibold h5">{{ product.title }}</h3>
-    <span class="text-base font-medium">
-      {{ product.price | money }}
-      {% if product.compare_at_price > product.price %}
-        <span class="text-sm text-gray-500 line-through ml-2">
-          {{ product.compare_at_price | money }}
-        </span>
+<div class="relative group">
+  <a href="{{ product.url }}" class="flex flex-col gap-3">
+    <div class="relative">
+      {% comment %} Primary Image {% endcomment %}
+      <div class="{{image_aspect}} absolute bg-(--color-background) group-hover:opacity-0 transition">
+        {{
+          product.featured_image
+          | image_url: width: 500
+          | image_tag: alt: product.title, class: 'w-full h-full object-cover block'
+        }}
+      </div>
+      {% if product.images.size > 1 %}
+        {% comment %} Secondary Image {% endcomment %}
+        <div class="{{image_aspect}} top-0 left-0 bg-(--color-background)">
+          {{
+            product.images[1]
+            | image_url: width: 500
+            | image_tag: alt: product.title, class: 'w-full h-full object-cover block'
+          }}
+        </div>
       {% endif %}
-    </span>
-  </div>
-</a>
+    </div>
+    <div class="flex flex-col gap-3 text-center">
+      <span class="text-sm text-(--color-accent)">{{ product.vendor }}</span>
+      <h3 class="text-base font-semibold h5">{{ product.title }}</h3>
+      <span class="text-base font-medium">
+        {{ product.price | money }}
+        {% if product.compare_at_price > product.price %}
+          <span class="ml-2 text-sm text-(--color-accent) line-through">
+            {{ product.compare_at_price | money }}
+          </span>
+        {% endif %}
+      </span>
+    </div>
+  </a>
+  {% form 'product', product %}
+    <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+    <button
+      type="submit"
+      class="absolute hover:cursor-pointer hover:scale-110 top-5 right-5 p-2 rounded-full bg-(--color-foreground) text-(--color-background) opacity-0 group-hover:opacity-100 transition"
+      aria-label="Quick add {{ product.title }}"
+    >
+      {{ 'icon-cart-add.svg' | inline_asset_content }}
+    </button>
+  {% endform %}
+</div>

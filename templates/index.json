@@ -102,7 +102,7 @@
         "button_secondary_text": "View even more",
         "button_secondary_link": "",
         "image_position": "flex-row-reverse",
-        "content_horizontal_position": "items-start text-left",
+        "content_horizontal_position": "items-center text-center",
         "content_vertical_position": "justify-center",
         "color_scheme": "scheme-2"
       }
