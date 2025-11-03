@@ -1,0 +1,53 @@
+<simple-slider
+  class="relative flex flex-col"
+>
+  <div
+    class="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory focus:outline-none no-scrollbar"
+    tabindex="0"
+  >
+    {% liquid
+      assign image_aspect = settings.image_aspect_ratio
+    %}
+    {% for media in product.media %}
+      <div class="w-full snap-start shrink-0 {{ image_aspect }}">
+        {% case media.media_type %}
+          {% when 'image' %}
+            {{
+              media
+              | image_url: width: 1200
+              | image_tag: alt: media.alt, class: 'w-full h-full object-cover block'
+            }}
+
+          {% when 'video' %}
+            <video
+              controls
+              class="object-cover w-full h-full"
+            >
+              <source src="{{ media | video_url }}" type="video/mp4">
+            </video>
+
+          {% when 'external_video' %}
+            {{ media | external_video_tag }}
+
+          {% when 'model' %}
+            {{ media | model_viewer_tag }}
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="flex justify-between w-full ">
+    <button
+      class="transition-opacity duration-200 ease-in-out rotate-180 cursor-pointer slider-nav aspect-square button-secondary"
+      aria-label="Previous"
+    >
+      {{ 'icon-arrow.svg' | inline_asset_content }}
+    </button>
+    <button
+      class="transition-opacity duration-200 ease-in-out cursor-pointer slider-nav aspect-square button-secondary"
+      aria-label="Next"
+    >
+      {{ 'icon-arrow.svg' | inline_asset_content }}
+    </button>
+  </div>
+</simple-slider>

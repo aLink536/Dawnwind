@@ -1,0 +1,20 @@
+{%- comment -%}
+  Usage:
+  {% render 'read-more', content: collection.description, classes: 'mb-10' %}
+
+  Parameters:
+  - content: (string) The HTML or text content to display inside the read-more area.
+  - classes: (string) Additional Tailwind or custom classes to apply to the wrapper.
+  - button-classes: (string) Additional Tailwind or custom classes to apply to the button.
+{%- endcomment -%}
+
+<read-more class="read-more-wrapper {{ classes }}">
+  <div class="overflow-hidden transition-all read-more__content line-clamp-2 rte">
+    {{ content }}
+  </div>
+  <button
+    class="read-more__toggle mt-2 text-sm underline hover:underline cursor-pointer {{ button-classes }}"
+  >
+    Read more
+  </button>
+</read-more>
