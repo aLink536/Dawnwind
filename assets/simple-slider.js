@@ -65,3 +65,46 @@ class SimpleSlider extends HTMLElement {
 }
 
 customElements.define('simple-slider', SimpleSlider);
+
+
+// ---------------------------------------------------------------------------
+// Extended slider for product galleries (with thumbnails)
+// ---------------------------------------------------------------------------
+
+class ProductSlider extends SimpleSlider {
+  connectedCallback() {
+    super.connectedCallback(); // run base slider logic
+
+    const track = this.querySelector('div.overflow-x-auto');
+    const thumbs = this.querySelectorAll('[data-thumb]');
+    if (!track || thumbs.length === 0) return;
+
+    const updateActiveThumb = () => {
+      const slideWidth = track.clientWidth;
+      const activeIndex = Math.round(track.scrollLeft / slideWidth);
+
+      thumbs.forEach((thumb, i) => {
+        thumb.classList.toggle('ring-2', i === activeIndex);
+        thumb.classList.toggle('ring-(--color-accent)', i === activeIndex);
+        thumb.classList.toggle('ring-offset-2', i === activeIndex);
+      });
+    };
+
+    // Click on thumbnail → scroll main slider
+    thumbs.forEach((thumb, index) => {
+      thumb.addEventListener('click', () => {
+        const slideWidth = track.clientWidth;
+        track.scrollTo({ left: slideWidth * index, behavior: 'smooth' });
+        updateActiveThumb();
+      });
+    });
+
+    // Update on scroll
+    track.addEventListener('scroll', () => requestAnimationFrame(updateActiveThumb));
+
+    // Initialize highlight
+    updateActiveThumb();
+  }
+}
+
+customElements.define('product-slider', ProductSlider);

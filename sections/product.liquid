@@ -17,131 +17,136 @@
       {% assign current_variant = product.selected_or_first_available_variant %}
 
       {% for block in section.blocks %}
-        {% case block.type %}
-          {% when 'title' %}
-            {% if product.title != blank %}
-              <h1 class="h2">{{ product.title }}</h1>
-            {% endif %}
+        <div {{ block.shopify_attributes }}>
+          {% case block.type %}
 
-          {% when 'price' %}
-            {% if product.price != blank %}
-              <span class="text-base font-medium">
-                {{ product.price | money }}
-                {% if product.compare_at_price > product.price %}
-                  <span class="ml-2 text-sm text-(--color-accent) line-through">
-                    {{ product.compare_at_price | money }}
-                  </span>
-                {% endif %}
-              </span>
-            {% endif %}
-
-          {% when 'description' %}
-            {% if product.description != blank %}
-              {% if block.settings.read_more %}
-                {% render 'read-more', content: product.description, classes: '' %}
-              {% else %}
-                <div>{{ product.description }}</div>
+            {% when 'title' %}
+              {% if product.title != blank %}
+                <h1 class="h2">{{ product.title }}</h1>
               {% endif %}
-            {% endif %}
 
-          {% when 'vendor' %}
-            {% if product.vendor != blank %}
-              <span class="text-sm text-(--color-accent)">{{ product.vendor }}</span>
-            {% endif %}
+            {% when 'price' %}
+              {% if product.price != blank %}
+                <span class="text-base font-medium">
+                  {{ product.price | money }}
+                  {% if product.compare_at_price > product.price %}
+                    <span class="ml-2 text-sm text-(--color-accent) line-through">
+                      {{ product.compare_at_price | money }}
+                    </span>
+                  {% endif %}
+                </span>
+              {% endif %}
 
-          {% when 'divider' %}
-            <hr class="border-t border-(--color-accent)">
-
-          {% when 'variant_selector' %}
-            {% if product.has_only_default_variant == false %}
-              {% for option in product.options_with_values %}
-                <div class="flex flex-col gap-1">
-                  <label
-                    for="Option-{{ option.name | handleize }}-{{ section.id }}"
-                    class="underline"
-                  >
-                    {{ option.name }}
-                  </label>
-                  <select
-                    id="Option-{{ option.name | handleize }}-{{ section.id }}"
-                    name="options[{{ option.name }}]"
-                    form="ProductForm-{{ section.id }}"
-                    class="p-2 border"
-                  >
-                    {% for value in option.values %}
-                      <option
-                        value="{{ value }}"
-                        {% if option.selected_value == value %}
-                          selected
-                        {% endif %}
-                      >
-                        {{ value }}
-                      </option>
-                    {% endfor %}
-                  </select>
-                </div>
-              {% endfor %}
-            {% endif %}
-
-          {% when 'add_to_cart' %}
-            {% form 'product', product, id: 'ProductForm-{{ section.id }}' %}
-              <div class="flex flex-col gap-2">
-                <input
-                  type="submit"
-                  value="Add to cart"
-                  class="button-primary"
-                >
-
-                {% if block.settings.show_dynamic_checkout %}
-                  {{ form | payment_button }}
+            {% when 'description' %}
+              {% if product.description != blank %}
+                {% if block.settings.read_more %}
+                  {% render 'read-more', content: product.description, classes: '' %}
+                {% else %}
+                  <div>{{ product.description }}</div>
                 {% endif %}
-              </div>
-            {% endform %}
+              {% endif %}
 
-          {% when 'quantity' %}
-            <div class="flex flex-col gap-1">
-              <label
-                for="Quantity-{{ section.id }}"
-                class="underline"
-              >
-                Quantity
-              </label>
-              <div class="flex items-center justify-between border">
-                <button
-                  type="button"
-                  class="px-3 py-2 button-secondary"
-                  onclick="this.nextElementSibling.stepDown()"
-                >
-                  −
-                </button>
-                <input
-                  type="number"
-                  name="quantity"
-                  form="ProductForm-{{ section.id }}"
-                  id="Quantity-{{ section.id }}"
-                  min="1"
-                  value="1"
-                  class="text-center"
-                >
-                <button
-                  type="button"
-                  class="px-3 py-2 button-secondary"
-                  onclick="this.previousElementSibling.stepUp()"
-                >
-                  +
-                </button>
-              </div>
-            </div>
+            {% when 'vendor' %}
+              {% if product.vendor != blank %}
+                <span class="text-sm text-(--color-accent)">{{ product.vendor }}</span>
+              {% endif %}
 
-          {% when 'custom_text' %}
-            {% if block.settings.text != blank %}
-              <p>{{ block.settings.text }}</p>
-            {% endif %}
-        {% endcase %}
+            {% when 'divider' %}
+              <hr class="border-t border-(--color-accent)">
+
+            {% when 'variant_selector' %}
+              {% if product.has_only_default_variant == false %}
+                {% for option in product.options_with_values %}
+                  <div class="flex flex-col gap-1">
+                    <label
+                      for="Option-{{ option.name | handleize }}-{{ section.id }}"
+                      class="underline"
+                    >
+                      {{ option.name }}
+                    </label>
+                    <select
+                      id="Option-{{ option.name | handleize }}-{{ section.id }}"
+                      name="options[{{ option.name }}]"
+                      form="ProductForm-{{ section.id }}"
+                      class="p-2 border"
+                    >
+                      {% for value in option.values %}
+                        <option
+                          value="{{ value }}"
+                          {% if option.selected_value == value %}
+                            selected
+                          {% endif %}
+                        >
+                          {{ value }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                {% endfor %}
+              {% endif %}
+
+            {% when 'add_to_cart' %}
+              {% form 'product', product, id: 'ProductForm-{{ section.id }}' %}
+                <div class="flex flex-col gap-2">
+                  <input
+                    type="submit"
+                    value="Add to cart"
+                    class="button-primary"
+                  >
+
+                  {% if block.settings.show_dynamic_checkout %}
+                    {{ form | payment_button }}
+                  {% endif %}
+                </div>
+              {% endform %}
+
+            {% when 'quantity' %}
+              <div class="flex flex-col gap-1">
+                <label
+                  for="Quantity-{{ section.id }}"
+                  class="underline"
+                >
+                  Quantity
+                </label>
+                <div class="flex items-center justify-between border">
+                  <button
+                    type="button"
+                    class="px-3 py-2 button-secondary"
+                    onclick="this.nextElementSibling.stepDown()"
+                  >
+                    −
+                  </button>
+                  <input
+                    type="number"
+                    name="quantity"
+                    form="ProductForm-{{ section.id }}"
+                    id="Quantity-{{ section.id }}"
+                    min="1"
+                    value="1"
+                    class="text-center"
+                  >
+                  <button
+                    type="button"
+                    class="px-3 py-2 button-secondary"
+                    onclick="this.previousElementSibling.stepUp()"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+
+            {% when 'custom_text' %}
+              {% if block.settings.text != blank %}
+                <p>{{ block.settings.text }}</p>
+              {% endif %}
+
+          {% endcase %}
+        </div>
       {% endfor %}
     </div>
   </div>
 </section>
+
 
 {% schema %}
 {
