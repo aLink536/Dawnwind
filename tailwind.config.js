@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./**/*.liquid', './assets/**/*.js'],
+  content: [
+    './**/*.liquid',
+    './**/*.json',
+    './assets/**/*.js',
+  ],
   safelist: [
     'aspect-square',
     'aspect-[4/5]',

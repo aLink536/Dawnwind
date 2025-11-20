@@ -86,13 +86,15 @@
               {% endif %}
 
             {% when 'add_to_cart' %}
-              {% form 'product', product, id: 'ProductForm-{{ section.id }}' %}
+              {% form 'product', product, id: 'ProductForm-{{ section.id }}', data-cart-form: true %}
                 <div class="flex flex-col gap-2">
                   <input
                     type="submit"
                     value="Add to cart"
                     class="button-primary"
+                    data-cart-submit
                   >
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
 
                   {% if block.settings.show_dynamic_checkout %}
                     {{ form | payment_button }}

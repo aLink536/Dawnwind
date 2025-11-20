@@ -39,7 +39,9 @@
   {% form 'product', product %}
     <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
     <button
-      type="submit"
+      type="button"
+      data-quick-add
+      data-variant-id="{{ product.first_available_variant.id }}"
       class="absolute hover:cursor-pointer hover:scale-110 top-5 right-5 p-2 rounded-full bg-(--color-foreground) text-(--color-background) opacity-0 group-hover:opacity-100 transition"
       aria-label="Quick add {{ product.title }}"
     >

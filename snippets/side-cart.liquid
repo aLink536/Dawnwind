@@ -1,0 +1,208 @@
+{% comment %}
+  Side Cart Drawer Component
+  Uses a11y-dialog for accessibility and Alpine.js for reactive updates
+{% endcomment %}
+
+<div
+  data-a11y-dialog="side-cart"
+  class="fixed inset-0 z-50"
+  aria-hidden="true"
+>
+  <div
+    data-a11y-dialog-overlay
+    class="fixed inset-0 bg-black/50"
+    data-a11y-dialog-hide
+  ></div>
+
+  <div
+    data-a11y-dialog-container
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cart-title"
+    class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-xl overflow-y-auto"
+    x-data="{
+      get cart() {
+        // Direct access to store for better reactivity
+        const store = $store.cart;
+        return store || { 
+          items: [], 
+          item_count: 0, 
+          total_price: 0, 
+          formatted_total: '$0.00', 
+          loading: false, 
+          error: null 
+        };
+      },
+      get cartManager() {
+        return window.cartManager ? window.cartManager.getMethods() : null;
+      },
+      formatMoney(cents) {
+        if (typeof window.Shopify !== 'undefined' && window.Shopify.formatMoney) {
+          return window.Shopify.formatMoney(cents);
+        }
+        return `$${(cents / 100).toFixed(2)}`;
+      }
+    }"
+  >
+    <div class="flex flex-col h-full">
+      <!-- Header -->
+      <div class="flex items-center justify-between p-4 border-b">
+        <h2 id="cart-title" class="text-lg font-semibold">Shopping Cart</h2>
+        <button
+          type="button"
+          data-a11y-dialog-hide
+          aria-label="Close cart"
+          class="p-2 hover:opacity-70 transition"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Cart Items -->
+      <div class="flex-1 overflow-y-auto p-4">
+        <!-- Loading State -->
+        <div x-show="cart.loading" class="text-center py-8">
+          <p class="text-sm text-gray-600">Loading...</p>
+        </div>
+
+        <!-- Error State -->
+        <div
+          x-show="cart.error"
+          class="mb-4 p-3 bg-red-50 border border-red-200 rounded text-sm text-red-800"
+          x-text="cart.error"
+        ></div>
+
+        <!-- Empty Cart -->
+        <div
+          x-show="!cart.loading && cart.items.length === 0"
+          class="text-center py-12"
+        >
+          <p class="text-gray-600 mb-4">Your cart is empty</p>
+          <button
+            type="button"
+            data-a11y-dialog-hide
+            class="button-primary"
+          >
+            Continue Shopping
+          </button>
+        </div>
+
+        <!-- Cart Items List -->
+        <!-- Debug: Cart state -->
+        <div x-show="false" x-text="'Debug - Items: ' + cart.items.length + ', Item count: ' + cart.item_count + ', Loading: ' + cart.loading"></div>
+        
+        <div
+          x-show="!cart.loading && cart.items.length > 0"
+          class="space-y-4"
+        >
+          <template x-for="item in cart.items" :key="item.key">
+            <div class="flex gap-4 border-b pb-4">
+              <!-- Product Image -->
+              <div class="w-20 h-20 flex-shrink-0">
+                <img
+                  :src="item.image"
+                  :alt="item.product_title"
+                  class="w-full h-full object-cover rounded"
+                />
+              </div>
+
+              <!-- Product Details -->
+              <div class="flex-1 flex flex-col gap-2">
+                <div>
+                  <h3 class="font-medium text-sm" x-text="item.product_title"></h3>
+                  <template x-if="item.variant_title && item.variant_title !== 'Default Title'">
+                    <p class="text-xs text-gray-600" x-text="item.variant_title"></p>
+                  </template>
+                </div>
+
+                <!-- Quantity Controls -->
+                <div class="flex items-center gap-2">
+                  <button
+                    type="button"
+                    @click="cartManager?.decrementQuantity(item.key)"
+                    class="w-8 h-8 flex items-center justify-center border rounded hover:bg-gray-100 transition"
+                    :disabled="cart.loading || item.quantity <= 1"
+                    aria-label="Decrease quantity"
+                  >
+                    −
+                  </button>
+                  <span
+                    class="w-12 text-center text-sm"
+                    x-text="item.quantity"
+                  ></span>
+                  <button
+                    type="button"
+                    @click="cartManager?.incrementQuantity(item.key)"
+                    class="w-8 h-8 flex items-center justify-center border rounded hover:bg-gray-100 transition"
+                    :disabled="cart.loading"
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
+                </div>
+
+                <!-- Price and Remove -->
+                <div class="flex items-center justify-between">
+                  <span
+                    class="font-medium"
+                    x-text="formatMoney(item.final_line_price)"
+                  ></span>
+                  <button
+                    type="button"
+                    @click="cartManager?.removeItem(item.key)"
+                    class="text-sm text-red-600 hover:text-red-800 underline"
+                    :disabled="cart.loading"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      <!-- Footer with Totals -->
+      <div
+        x-show="!cart.loading && cart.items.length > 0"
+        class="border-t p-4 space-y-4"
+      >
+        <!-- Subtotal -->
+        <div class="flex justify-between text-lg font-semibold">
+          <span>Subtotal</span>
+          <span x-text="cart.formatted_total"></span>
+        </div>
+
+        <!-- Checkout Button -->
+        <a
+          href="{{ routes.cart_url }}"
+          class="block w-full text-center button-primary py-3"
+        >
+          Checkout
+        </a>
+
+        <!-- Continue Shopping -->
+        <button
+          type="button"
+          data-a11y-dialog-hide
+          class="block w-full text-center button-secondary py-3"
+        >
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

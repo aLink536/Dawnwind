@@ -7,20 +7,41 @@
 {% endcomment %}
 
 {% if article.image %}
-  {{ article.image | image_url: width: 1000 | image_tag }}
+<div class="relative w-full max-h-screen overflow-hidden mb-10">
+  <!-- Image container with proper height constraints -->
+  <div class="relative h-screen max-h-[80vh]">
+    <!-- Background image -->
+    {{ article.image | image_url: width: 2000 | image_tag: class: 'absolute inset-0 w-full h-full object-cover' }}
+    
+    <!-- Dark overlay (separate from image) -->
+    <div class="absolute inset-0 bg-black/60"></div>
+    
+    <!-- Text content -->
+    <div class="relative z-10 flex h-full items-center justify-center px-4">
+      <div class="max-w-screen-lg mx-auto text-center">
+        <h1 class="uppercase text-white text-3xl md:text-4xl lg:text-5xl font-bold">
+          {{ article.title }}
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
 {% endif %}
 
-<h1>{{ article.title }}</h1>
-
+<div class="article max-w-screen-lg mx-auto">
+{% unless article.image %}
+  <h1>{{ article.title }}</h1>
+{% endunless %}
 {% assign date = article.published_at | time_tag: format: 'date' %}
-<p>{{ 'blog.article_metadata_html' | t: date: date, author: article.author }}</p>
-
-{{ article.content }}
+<p class="italic">{{ 'blog.article_metadata_html' | t: date: date, author: article.author }}</p>
+<div class="rte">
+  {{ article.content }}
+</div>
 
 {% if blog.comments_enabled? %}
   <h2>{{ 'blog.article_comments' | t }}</h2>
 
-  <div id="comments">
+  <div id="shopify-comments">
     {% paginate article.comments by 10 %}
       {% for comment in article.comments %}
         <div>
@@ -59,7 +80,7 @@
     <input type="submit" value="{{ 'blog.comment_form_submit' | t }}">
   {% endform %}
 {% endif %}
-
+</div>
 {% schema %}
 {
   "name": "t:general.article",

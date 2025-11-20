@@ -18,6 +18,24 @@
     {{ content_for_layout }}
 
     {% sections 'footer-group' %}
+    
+    {% # Side Cart Drawer %}
+    {% render 'side-cart' %}
+    
+    {% # Alpine.js from CDN %}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.2/dist/cdn.min.js"></script>
+    
+    {% # Initialize cart store before Alpine processes DOM %}
+    <script type="module">
+      import { CartStore } from "{{ 'add-to-cart.js' | asset_url }}";
+      
+      // Register store when Alpine initializes (before DOM processing)
+      document.addEventListener('alpine:init', () => {
+        const cartStore = new CartStore();
+        cartStore.register();
+      });
+    </script>
+    
     <script type="module" src="{{ 'main.js' | asset_url }}"></script>
   </body>
 </html>

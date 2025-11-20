@@ -16,12 +16,14 @@
   "homepage": "https://github.com/aLink536/Dawnwind#readme",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.16",
+    "a11y-dialog": "^8.1.4",
+    "alpinejs": "^3.15.2",
     "tailwindcss": "^4.1.16"
   },
   "scripts": {
     "dev": "tailwindcss -i ./assets/input.css -o ./assets/output.css --watch",
     "build": "tailwindcss -i ./assets/input.css -o ./assets/output.css --minify",
-    "shopify": "shopify theme dev --store https://dawnwind.myshopify.com",
+    "shopify": "shopify theme dev --store 7b9e4e-2.myshopify.com",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": []

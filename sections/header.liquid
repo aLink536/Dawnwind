@@ -77,23 +77,27 @@
           </a>
         {% endif %}
 
-        <a
-          href="{{ routes.cart_url }}"
+        <button
+          type="button"
+          data-cart-trigger
           aria-label="Cart"
           class="relative transition hover:opacity-80 w-6 h-6 flex items-center justify-center"
+          x-data="{ 
+            get cart() { 
+              return $store.cart || { item_count: 0, items: [], loading: false, error: null, formatted_total: '$0.00' };
+            }
+          }"
         >
           <span class="w-5 h-5 [&>svg]:w-full [&>svg]:h-full [&>svg]:fill-current">
             {{ 'icon-cart.svg' | inline_asset_content }}
           </span>
 
-          {% if cart.item_count > 0 %}
-            <span
-              class="absolute -top-2 -right-2 rounded-full text-xs font-medium px-1.5 py-0.5 bg-(--color-accent) text-(--color-foreground)"
-            >
-              {{ cart.item_count }}
-            </span>
-          {% endif %}
-        </a>
+          <span
+            x-show="cart && cart.item_count > 0"
+            class="absolute -top-2 -right-2 rounded-full text-xs font-medium px-1.5 py-0.5 bg-(--color-accent) text-(--color-foreground)"
+            x-text="cart.item_count || 0"
+          ></span>
+        </button>
       </div>
     </div>
   </div>

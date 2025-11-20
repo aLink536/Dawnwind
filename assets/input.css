@@ -3,9 +3,11 @@
 /** Critical CSS for the theme. This file is included on every page. */
 
 /* Reset styles inspired by https://www.joshwcomeau.com/css/custom-css-reset/ */
-* {
-    box-sizing: border-box;
-    margin: 0;
+@layer base {
+    * {
+        box-sizing: border-box;
+        margin: 0;
+    }
 }
 
 body {
@@ -26,6 +28,7 @@ textarea,
 select {
     font: inherit;
     border-radius: var(--style-border-radius-inputs);
+    
 }
 
 select {
@@ -70,11 +73,7 @@ p:empty {
 /* Utility classes */
 
 .page-width {
-    padding-left: var(--container-padding);
-    padding-right: var(--container-padding);
-    max-width: var(--container-max-width);
-    margin-left: auto;
-    margin-right: auto;
+    @apply max-w-screen-xl mx-4 xl:mx-auto;
 }
 
 .px-default {
@@ -113,6 +112,23 @@ p:empty {
     color: var(--color-foreground);
     background-color: var(--color-background);
 }
+
+/* RTE */
+.rte {
+    @apply grid gap-4;
+}
+/* Make ALL iframes inside .rte responsive */
+.rte iframe {
+    @apply w-full h-full aspect-video rounded-lg;
+  }
+/* Force the parent <p> to behave like a responsive wrapper */
+.rte p:has(> iframe) {
+    @apply relative w-full overflow-hidden aspect-video;
+  }
+  
+  .rte p:has(> iframe) iframe {
+    @apply absolute top-0 left-0 w-full h-full;
+  }  
 
 
 /* ======================================================
@@ -197,4 +213,54 @@ h6,.h6 {
 .button-secondary:hover{
     background-color: var(--color-button);
     color: var(--color-button-label);
+}
+
+/* Side Cart Drawer Styles */
+/* Hide entire dialog when aria-hidden="true" - CRITICAL for preventing click blocking */
+[data-a11y-dialog="side-cart"][aria-hidden="true"] {
+    display: none !important;
+}
+
+/* Show dialog when open - default to hidden if no aria-hidden attribute */
+[data-a11y-dialog="side-cart"] {
+    display: none;
+}
+
+[data-a11y-dialog="side-cart"][aria-hidden="false"] {
+    display: block !important;
+}
+
+[data-a11y-dialog="side-cart"] [data-a11y-dialog-overlay] {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+    z-index: 50;
+}
+
+[data-a11y-dialog="side-cart"] [data-a11y-dialog-container] {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100%;
+    max-width: 28rem;
+    background: white;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    z-index: 51; /* Higher than the overlay */
+}
+
+@media (max-width: 28rem) {
+    [data-a11y-dialog="side-cart"] [data-a11y-dialog-container] {
+        max-width: 100%;
+    }
+}
+
+[data-a11y-dialog="side-cart"][aria-hidden="false"] [data-a11y-dialog-container] {
+    transform: translateX(0);
+}
+
+[data-a11y-dialog="side-cart"][aria-hidden="true"] [data-a11y-dialog-container] {
+    transform: translateX(100%);
 }
