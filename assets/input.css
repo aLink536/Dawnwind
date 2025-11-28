@@ -198,3 +198,99 @@ h6,.h6 {
     background-color: var(--color-button);
     color: var(--color-button-label);
 }
+
+
+/* Root container (the <off-canvas> element) */
+.offcanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  pointer-events: none;
+}
+
+/* Backdrop */
+.offcanvas__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Panel */
+.offcanvas__panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  max-width: 80vw;
+  width: 20rem;
+  /* background / text colours come from your color-scheme classes */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Directions */
+.offcanvas--right .offcanvas__panel {
+  right: 0;
+  transform: translateX(100%);
+}
+
+.offcanvas--left .offcanvas__panel {
+  left: 0;
+  transform: translateX(-100%);
+}
+
+.offcanvas--bottom .offcanvas__panel {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: auto;
+  transform: translateY(100%);
+}
+
+.offcanvas--top .offcanvas__panel {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: auto;
+  transform: translateY(-100%);
+}
+
+/* Fade variant (full-screen panel) */
+.offcanvas--fade .offcanvas__panel {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  transform: none;
+}
+
+/* Open state */
+.offcanvas--open {
+  pointer-events: auto;
+}
+
+.offcanvas--open .offcanvas__backdrop {
+  opacity: 1;
+}
+
+/* Open state per direction */
+.offcanvas--open.offcanvas--right .offcanvas__panel {
+  transform: translateX(0);
+}
+
+.offcanvas--open.offcanvas--left .offcanvas__panel {
+  transform: translateX(0);
+}
+
+.offcanvas--open.offcanvas--bottom .offcanvas__panel {
+  transform: translateY(0);
+}
+
+.offcanvas--open.offcanvas--top .offcanvas__panel {
+  transform: translateY(0);
+}
+
+.offcanvas--open.offcanvas--fade .offcanvas__panel {
+  opacity: 1;
+}
