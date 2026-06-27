@@ -11,7 +11,6 @@
   "sections": {
     "hero_YPkie4": {
       "type": "hero",
-      "name": "Hero",
       "blocks": {
         "slide_qP3kxR": {
           "type": "slide",
@@ -20,6 +19,7 @@
             "image_mobile": "shopify://shop_images/wooden-watch.jpg",
             "overlay_enabled": false,
             "heading": "Dawnwind",
+            "heading_size": "h2",
             "subheading": "a clean, responsive Shopify theme built from the ground up with Tailwind CSS for total design control and modern performance.",
             "button_text": "Primary Button",
             "button_link": "shopify://collections/all",
@@ -35,8 +35,11 @@
       "block_order": [
         "slide_qP3kxR"
       ],
+      "name": "Hero",
       "settings": {
-        "full_width": true
+        "full_width": true,
+        "padding_top": "pt-0",
+        "padding_bottom": "pb-0"
       }
     },
     "usps_kzLaPg": {
@@ -87,6 +90,8 @@
       ],
       "name": "USPs",
       "settings": {
+        "padding_top": "pt-8",
+        "padding_bottom": "pb-8",
         "color_scheme": "scheme-2"
       }
     },
@@ -95,8 +100,11 @@
       "name": "Featured Collection",
       "settings": {
         "heading": "Watches",
+        "heading_size": "h2",
         "collection": "hamilton-watches",
         "content_horizontal_position": "text-center",
+        "padding_top": "pt-16",
+        "padding_bottom": "pb-16",
         "color_scheme": "scheme-1"
       }
     },
@@ -106,6 +114,7 @@
       "settings": {
         "image": "shopify://shop_images/tying-up-boot-laces.jpg",
         "heading": "Split box",
+        "heading_size": "h2",
         "subheading": "A classic overused section",
         "button_text": "View all",
         "button_link": "#",
@@ -114,6 +123,8 @@
         "image_position": "flex-row-reverse",
         "content_horizontal_position": "items-center text-center",
         "content_vertical_position": "justify-center",
+        "padding_top": "pt-0",
+        "padding_bottom": "pb-0",
         "color_scheme": "scheme-2"
       }
     }
