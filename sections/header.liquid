@@ -138,13 +138,21 @@
 
 {% schema %}
 {
-  "name": "Header",
+  "name": "t:general.header",
   "class": "sticky top-0 z-50",
   "settings": [
+    {
+      "type": "header",
+      "content": "t:headers.menu_settings"
+    },
     {
       "type": "link_list",
       "id": "menu",
       "label": "Main menu"
+    },
+    {
+      "type": "header",
+      "content": "t:headers.logo_settings"
     },
     {
       "type": "select",
@@ -174,6 +182,10 @@
       "min": 40,
       "max": 400,
       "step": 10
+    },
+    {
+      "type": "header",
+      "content": "t:headers.color_scheme"
     },
     {
       "type": "color_scheme",

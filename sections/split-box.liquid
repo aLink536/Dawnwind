@@ -1,4 +1,4 @@
-<section class="px-0! py-default page-width">
+<section class="px-0! page-width {{ section.settings.padding_top }} {{ section.settings.padding_bottom }}">
   <div class="w-full flex {{ section.settings.image_position }} flex-wrap justify-center">
     <div class="w-full lg:w-1/2">
       {% if section.settings.image != blank %}
@@ -7,11 +7,7 @@
     </div>
 
     <div class="flex lg:w-1/2 flex-col w-full gap-3 p-default color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
-      {% if section.settings.heading != blank %}
-        <h2 class="">
-          {{ section.settings.heading }}
-        </h2>
-      {% endif %}
+      {% render 'heading', heading: section.settings.heading, size: section.settings.heading_size %}
 
       {% if section.settings.subheading != blank %}
         <p class="">
@@ -20,14 +16,8 @@
       {% endif %}
       {% if section.settings.button_text != blank and section.settings.button_link != blank %}
         <div class="flex flex-wrap gap-3">
-          <a href="{{ section.settings.button_link }}" class="button-primary">
-            {{ section.settings.button_text }}
-          </a>
-          {% if section.settings.button_secondary_text != blank %}
-            <a href="{{ section.settings.button_secondary_link }}" class="button-secondary">
-              {{ section.settings.button_secondary_text }}
-            </a>
-          {% endif %}
+          {% render 'button', text: section.settings.button_text, url: section.settings.button_link %}
+          {% render 'button', text: section.settings.button_secondary_text, url: section.settings.button_secondary_link, style: 'secondary' %}
         </div>
       {% endif %}
     </div>
@@ -36,11 +26,11 @@
 
 {% schema %}
 {
-  "name": "Split box",
+  "name": "t:general.split_box",
   "settings": [
     {
       "type": "header",
-      "content": "Content settings"
+      "content": "t:headers.image_settings"
     },
     {
       "type": "image_picker",
@@ -48,9 +38,26 @@
       "label": "Image"
     },
     {
+      "type": "header",
+      "content": "t:headers.text_settings"
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:labels.heading_size",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "t:options.heading_size.h1" },
+        { "value": "h2", "label": "t:options.heading_size.h2" },
+        { "value": "h3", "label": "t:options.heading_size.h3" },
+        { "value": "h4", "label": "t:options.heading_size.h4" },
+        { "value": "h5", "label": "t:options.heading_size.h5" }
+      ]
     },
     {
       "type": "text",
@@ -79,7 +86,7 @@
     },
     {
       "type": "header",
-      "content": "Layout settings"
+      "content": "t:headers.content_layout_settings"
     },
     {
       "type": "select",
@@ -139,7 +146,35 @@
     },
     {
       "type": "header",
-      "content": "Color scheme"
+      "content": "t:headers.section_layout_settings"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "default": "pt-16",
+      "options": [
+        { "value": "pt-0", "label": "t:options.padding_size.none" },
+        { "value": "pt-8", "label": "t:options.padding_size.small" },
+        { "value": "pt-16", "label": "t:options.padding_size.medium" },
+        { "value": "pt-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "default": "pb-16",
+      "options": [
+        { "value": "pb-0", "label": "t:options.padding_size.none" },
+        { "value": "pb-8", "label": "t:options.padding_size.small" },
+        { "value": "pb-16", "label": "t:options.padding_size.medium" },
+        { "value": "pb-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:headers.color_scheme"
     },
     {
       "type": "color_scheme",

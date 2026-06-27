@@ -1,0 +1,188 @@
+{% comment %}
+  Reference section template.
+
+  Not intended to be rendered on a live page — it has no presets, so it
+  won't appear in the theme editor's "Add section" picker. Duplicate this
+  file when starting a new section so the settings layout, header
+  groupings, and snippet usage stay consistent across the theme.
+
+  Conventions demonstrated here:
+  - Section/header names use t: keys resolved against
+    locales/en.default.schema.json (add new keys there before using them).
+  - Settings are grouped under the same five headers, in this order:
+    Image settings -> Text settings -> Content layout settings ->
+    Section layout settings -> Color scheme. Drop a group entirely if the
+    section has nothing for it; don't introduce new header names.
+  - Heading text always renders through the `heading` snippet, never a
+    raw <h1>-<h6> tag, so heading_size stays consistent everywhere.
+  - CTAs always render through the `button` snippet. Pass `nested: true`
+    if the button sits inside a parent <a> (e.g. a card that's itself a
+    link), so it renders a <span> instead of an invalid nested <a>.
+  - Every section gets `padding_top`/`padding_bottom` selects (None/Small/
+    Medium/Large, default Medium) applied as pt-*/pb-* classes on the
+    outer <section>. `page-width` only sets horizontal padding/max-width,
+    so it never conflicts with these. Once a section controls its own
+    vertical padding this way, drop `py-default`/`p-default` from any
+    inner wrapper (use `px-default` if it still needs horizontal padding)
+    so spacing isn't applied twice.
+{% endcomment %}
+
+<section class="color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.padding_top }} {{ section.settings.padding_bottom }} {% unless section.settings.full_width %}page-width{% endunless %}">
+  <div class="w-full px-default flex flex-col gap-3 {{ section.settings.content_vertical_position }} {{ section.settings.content_horizontal_position }}">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1600 | image_tag: class: 'w-full h-full object-cover' }}
+    {% endif %}
+
+    {% render 'heading', heading: section.settings.heading, size: section.settings.heading_size %}
+
+    {% if section.settings.subheading != blank %}
+      <p>{{ section.settings.subheading }}</p>
+    {% endif %}
+
+    {% if section.settings.button_text != blank and section.settings.button_link != blank %}
+      <div class="flex flex-wrap gap-3">
+        {% render 'button', text: section.settings.button_text, url: section.settings.button_link %}
+        {% render 'button', text: section.settings.button_secondary_text, url: section.settings.button_secondary_link, style: 'secondary' %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "template",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:headers.image_settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "overlay_enabled",
+      "label": "Enable overlay",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:headers.text_settings"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:labels.heading_size",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "t:options.heading_size.h1" },
+        { "value": "h2", "label": "t:options.heading_size.h2" },
+        { "value": "h3", "label": "t:options.heading_size.h3" },
+        { "value": "h4", "label": "t:options.heading_size.h4" },
+        { "value": "h5", "label": "t:options.heading_size.h5" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    },
+    {
+      "type": "text",
+      "id": "button_secondary_text",
+      "label": "Button text"
+    },
+    {
+      "type": "url",
+      "id": "button_secondary_link",
+      "label": "Button link"
+    },
+    {
+      "type": "header",
+      "content": "t:headers.content_layout_settings"
+    },
+    {
+      "type": "select",
+      "id": "content_horizontal_position",
+      "label": "Content horizontal position",
+      "default": "items-center text-center",
+      "options": [
+        { "value": "items-start text-left", "label": "Left" },
+        { "value": "items-center text-center", "label": "Center" },
+        { "value": "items-end text-right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_vertical_position",
+      "label": "Content vertical position",
+      "default": "justify-center",
+      "options": [
+        { "value": "justify-start", "label": "Top" },
+        { "value": "justify-center", "label": "Middle" },
+        { "value": "justify-end", "label": "Bottom" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:headers.section_layout_settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "label": "Full width section",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "default": "pt-16",
+      "options": [
+        { "value": "pt-0", "label": "t:options.padding_size.none" },
+        { "value": "pt-8", "label": "t:options.padding_size.small" },
+        { "value": "pt-16", "label": "t:options.padding_size.medium" },
+        { "value": "pt-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "default": "pb-16",
+      "options": [
+        { "value": "pb-0", "label": "t:options.padding_size.none" },
+        { "value": "pb-8", "label": "t:options.padding_size.small" },
+        { "value": "pb-16", "label": "t:options.padding_size.medium" },
+        { "value": "pb-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:headers.color_scheme"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme"
+    }
+  ]
+}
+{% endschema %}

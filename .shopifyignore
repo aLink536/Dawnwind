@@ -11,3 +11,6 @@
 #
 # Ignore templates and sections with a regular expression:
 #   /(templates|sections)/.*\.json/
+
+# Ignore stray editor/temp files left alongside liquid files:
+/.*\.tmp\.\d+\..*/

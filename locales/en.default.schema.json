@@ -13,10 +13,12 @@
     "column": "Column",
     "content": "Content",
     "custom_section": "Custom section",
+    "featured_collection": "Featured collection",
     "fonts": "Fonts",
     "footer": "Footer",
     "group": "Group",
     "header": "Header",
+    "hero": "Hero",
     "layout": "Layout",
     "main": "Main",
     "page": "Page",
@@ -29,9 +31,33 @@
     "section": "Section",
     "settings": "Settings",
     "sidebar": "Sidebar",
+    "split_box": "Split box",
     "text": "Text",
     "theme": "Theme",
-    "typography": "Typography"
+    "typography": "Typography",
+    "usps": "USPs"
+  },
+  "headers": {
+    "color_scheme": "Color scheme",
+    "content_layout_settings": "Content layout settings",
+    "image_settings": "Image settings",
+    "logo_settings": "Logo settings",
+    "menu_settings": "Menu settings",
+    "section_layout_settings": "Section layout settings",
+    "text_settings": "Text settings"
+  },
+  "blocks": {
+    "add_to_cart": "Add to cart button",
+    "custom_text": "Custom text",
+    "description": "Product description",
+    "divider": "Divider",
+    "price": "Product price",
+    "quantity": "Quantity input",
+    "slide": "Slide",
+    "title": "Product title",
+    "usp": "USP",
+    "variant_selector": "Variant selector",
+    "vendor": "Product vendor"
   },
   "labels": {
     "alignment": "Alignment",
@@ -39,10 +65,13 @@
     "foreground": "Foreground",
     "grid_gap": "Grid spacing",
     "grid_item_width": "Grid item width",
+    "heading_size": "Heading size",
     "input_corner_radius": "Input corner radius",
     "layout_direction": "Layout direction",
     "menu": "Menu",
     "padding": "Padding",
+    "padding_bottom": "Bottom padding",
+    "padding_top": "Top padding",
     "page_margin": "Page margin",
     "page_width": "Page width",
     "show_payment_icons": "Show payment icons",
@@ -59,6 +88,19 @@
       "horizontal": "Horizontal",
       "vertical": "Vertical"
     },
+    "heading_size": {
+      "h1": "H1",
+      "h2": "H2",
+      "h3": "H3",
+      "h4": "H4",
+      "h5": "H5"
+    },
+    "padding_size": {
+      "none": "None",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large"
+    },
     "page_width": {
       "narrow": "Narrow",
       "wide": "Wide"
@@ -71,6 +113,6 @@
       "title": "Title",
       "subtitle": "Subtitle",
       "normal": "Normal text"
-    },
+    }
   }
 }

@@ -1,0 +1,31 @@
+{% doc %}
+  Renders a button-styled link.
+
+  @param {string} text - The button label
+  @param {string} url - The link URL. Not required when `nested` is true.
+  @param {string} [style] - Visual style: 'primary' or 'secondary'. Defaults to 'primary'.
+  @param {string} [class] - Additional classes to append
+  @param {boolean} [nested] - Set true when rendering inside another `<a>`, to avoid
+    invalid nested anchors. Renders a `<span>` instead of an `<a>`.
+
+  @example
+  {% render 'button', text: section.settings.button_text, url: section.settings.button_link, style: 'secondary' %}
+{% enddoc %}
+
+{% liquid
+  assign button_style = style | default: 'primary'
+%}
+
+{% if nested %}
+  {% if text != blank %}
+    <span class="button-{{ button_style }}{% if class != blank %} {{ class }}{% endif %}">
+      {{ text }}
+    </span>
+  {% endif %}
+{% else %}
+  {% if text != blank and url != blank %}
+    <a href="{{ url }}" class="button-{{ button_style }}{% if class != blank %} {{ class }}{% endif %}">
+      {{ text }}
+    </a>
+  {% endif %}
+{% endif %}

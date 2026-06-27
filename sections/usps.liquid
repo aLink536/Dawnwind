@@ -1,6 +1,6 @@
 <section>
   <simple-slider
-    class="flex flex-col gap-3 py-3 color-scheme color-scheme--{{ section.settings.color_scheme }}"
+    class="flex flex-col gap-3 color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.padding_top }} {{ section.settings.padding_bottom }}"
   >
     <div class="items-center w-full page-width stack">
       <div
@@ -46,11 +46,39 @@
 </section>
 {% schema %}
 {
-  "name": "USPs",
+  "name": "t:general.usps",
   "settings": [
     {
       "type": "header",
-      "content": "Color scheme"
+      "content": "t:headers.section_layout_settings"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "default": "pt-16",
+      "options": [
+        { "value": "pt-0", "label": "t:options.padding_size.none" },
+        { "value": "pt-8", "label": "t:options.padding_size.small" },
+        { "value": "pt-16", "label": "t:options.padding_size.medium" },
+        { "value": "pt-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "default": "pb-16",
+      "options": [
+        { "value": "pb-0", "label": "t:options.padding_size.none" },
+        { "value": "pb-8", "label": "t:options.padding_size.small" },
+        { "value": "pb-16", "label": "t:options.padding_size.medium" },
+        { "value": "pb-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:headers.color_scheme"
     },
     {
       "type": "color_scheme",
@@ -61,7 +89,7 @@
   "blocks": [
     {
       "type": "usp",
-      "name": "USP",
+      "name": "t:blocks.usp",
       "limit": 4,
       "settings": [
         {

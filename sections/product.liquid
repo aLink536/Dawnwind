@@ -5,8 +5,8 @@
   The Add to Cart block wraps its own form, and other inputs link to it via the `form` attribute.
 {% endcomment %}
 
-<section class="color-scheme color-scheme--{{ section.settings.color_scheme }}">
-  <div class="flex flex-row flex-wrap gap-10 md:flex-nowrap page-width p-default">
+<section class="color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.padding_top }} {{ section.settings.padding_bottom }}">
+  <div class="flex flex-row flex-wrap gap-10 md:flex-nowrap page-width px-default">
     <!-- Static Product Gallery -->
     <div class="w-full md:w-2/3">
       {% render 'product-gallery', product: product %}
@@ -150,11 +150,39 @@
 
 {% schema %}
 {
-  "name": "Product (Tailwind Blocks)",
+  "name": "t:general.product",
   "settings": [
     {
       "type": "header",
-      "content": "Color scheme"
+      "content": "t:headers.section_layout_settings"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "default": "pt-16",
+      "options": [
+        { "value": "pt-0", "label": "t:options.padding_size.none" },
+        { "value": "pt-8", "label": "t:options.padding_size.small" },
+        { "value": "pt-16", "label": "t:options.padding_size.medium" },
+        { "value": "pt-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "default": "pb-16",
+      "options": [
+        { "value": "pb-0", "label": "t:options.padding_size.none" },
+        { "value": "pb-8", "label": "t:options.padding_size.small" },
+        { "value": "pb-16", "label": "t:options.padding_size.medium" },
+        { "value": "pb-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:headers.color_scheme"
     },
     {
       "type": "color_scheme",
@@ -163,22 +191,22 @@
     }
   ],
   "blocks": [
-    { "type": "title", "name": "Product Title" },
-    { "type": "price", "name": "Product Price" },
+    { "type": "title", "name": "t:blocks.title" },
+    { "type": "price", "name": "t:blocks.price" },
     {
       "type": "description",
-      "name": "Product Description",
+      "name": "t:blocks.description",
       "settings": [
         { "type": "checkbox", "id": "read_more", "label": "Show as read more ", "default": true }
       ]
     },
-    { "type": "variant_selector", "name": "Variant Selector" },
-    { "type": "quantity", "name": "Quantity Input" },
-    { "type": "divider", "name": "Divider" },
-    { "type": "vendor", "name": "Product Vendor" },
+    { "type": "variant_selector", "name": "t:blocks.variant_selector" },
+    { "type": "quantity", "name": "t:blocks.quantity" },
+    { "type": "divider", "name": "t:blocks.divider" },
+    { "type": "vendor", "name": "t:blocks.vendor" },
     {
       "type": "add_to_cart",
-      "name": "Add to Cart Button",
+      "name": "t:blocks.add_to_cart",
       "settings": [
         {
           "type": "checkbox",
@@ -190,7 +218,7 @@
     },
     {
       "type": "custom_text",
-      "name": "Custom Text",
+      "name": "t:blocks.custom_text",
       "settings": [
         {
           "type": "text",

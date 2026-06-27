@@ -1,10 +1,6 @@
-<section class="gap-8 flex flex-col color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_horizontal_position }}">
-  <div class="w-full page-width p-default">
-    {% if section.settings.section_heading != blank %}
-      <h2>
-        <a href="{{ section.settings.collection.url }}">{{ section.settings.section_heading }}</a>
-      </h2>
-    {% endif %}
+<section class="gap-8 flex flex-col color-scheme color-scheme--{{ section.settings.color_scheme }} {{ section.settings.content_horizontal_position }} {{ section.settings.padding_top }} {{ section.settings.padding_bottom }}">
+  <div class="w-full page-width px-default">
+    {% render 'heading', heading: section.settings.heading, size: section.settings.heading_size, url: section.settings.collection.url %}
 
     {% if section.settings.collection != blank %}
       {% assign collection_handle = section.settings.collection %}
@@ -42,7 +38,7 @@
         </simple-slider>
 
         <div class="mt-6 text-center">
-          <a href="{{ collection.url }}" class="button-primary">View All Products</a>
+          {% render 'button', text: 'View All Products', url: collection.url %}
         </div>
       {% else %}
         <p>No products found in this collection.</p>
@@ -55,12 +51,29 @@
 
 {% schema %}
 {
-  "name": "featured collection",
+  "name": "t:general.featured_collection",
   "settings": [
     {
+      "type": "header",
+      "content": "t:headers.text_settings"
+    },
+    {
       "type": "text",
-      "id": "section_heading",
-      "label": "Section Heading"
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "t:labels.heading_size",
+      "default": "h2",
+      "options": [
+        { "value": "h1", "label": "t:options.heading_size.h1" },
+        { "value": "h2", "label": "t:options.heading_size.h2" },
+        { "value": "h3", "label": "t:options.heading_size.h3" },
+        { "value": "h4", "label": "t:options.heading_size.h4" },
+        { "value": "h5", "label": "t:options.heading_size.h5" }
+      ]
     },
     {
       "type": "collection",
@@ -69,7 +82,7 @@
     },
     {
       "type": "header",
-      "content": "Content layout settings"
+      "content": "t:headers.content_layout_settings"
     },
     {
       "type": "select",
@@ -93,7 +106,35 @@
     },
     {
       "type": "header",
-      "content": "Color scheme"
+      "content": "t:headers.section_layout_settings"
+    },
+    {
+      "type": "select",
+      "id": "padding_top",
+      "label": "t:labels.padding_top",
+      "default": "pt-16",
+      "options": [
+        { "value": "pt-0", "label": "t:options.padding_size.none" },
+        { "value": "pt-8", "label": "t:options.padding_size.small" },
+        { "value": "pt-16", "label": "t:options.padding_size.medium" },
+        { "value": "pt-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "padding_bottom",
+      "label": "t:labels.padding_bottom",
+      "default": "pb-16",
+      "options": [
+        { "value": "pb-0", "label": "t:options.padding_size.none" },
+        { "value": "pb-8", "label": "t:options.padding_size.small" },
+        { "value": "pb-16", "label": "t:options.padding_size.medium" },
+        { "value": "pb-24", "label": "t:options.padding_size.large" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:headers.color_scheme"
     },
     {
       "type": "color_scheme",

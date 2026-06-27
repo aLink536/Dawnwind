@@ -1,0 +1,27 @@
+{% doc %}
+  Renders a heading with an independently configurable visual size and HTML tag.
+
+  @param {string} heading - The heading text/content to render
+  @param {string} [size] - Visual size class: h1, h2, h3, h4, or h5. Defaults to h2.
+  @param {string} [tag] - HTML tag to render: h1, h2, h3, h4, or h5. Defaults to h2.
+  @param {string} [class] - Additional classes to append
+  @param {string} [url] - Optional URL; wraps the heading text in a link
+
+  @example
+  {% render 'heading', heading: section.settings.heading, size: section.settings.heading_size %}
+{% enddoc %}
+
+{% liquid
+  assign heading_size = size | default: 'h2'
+  assign heading_tag = tag | default: 'h2'
+%}
+
+{% if heading != blank %}
+  <{{ heading_tag }} class="{{ heading_size }}{% if class != blank %} {{ class }}{% endif %}">
+    {% if url != blank %}
+      <a href="{{ url }}">{{ heading }}</a>
+    {% else %}
+      {{ heading }}
+    {% endif %}
+  </{{ heading_tag }}>
+{% endif %}
